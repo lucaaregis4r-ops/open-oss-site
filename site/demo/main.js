@@ -101,7 +101,8 @@ document.addEventListener('keydown', event => {
 // -------------------------------------------------------------
 const viewIds = [
   'meu-espaco', 'catalogo-modulos', 'criar-modulo', 'modulo', 'automacoes', 'assistente', 'publicacao',
-  'fluxos', 'administracao-contas', 'administracao-processos'
+  'equipe', 'pessoas', 'agenda', 'fluxos', 'competicoes', 'viagens', 'projetos',
+  'administracao-contas', 'administracao-processos'
 ];
 const ossCoreViews = new Set(['meu-espaco', 'catalogo-modulos', 'criar-modulo', 'modulo', 'automacoes', 'assistente', 'publicacao']);
 
@@ -163,6 +164,7 @@ function setView(viewId, options = {}) {
 
   if (ossCoreViews.has(viewId)) {
     document.dispatchEvent(new CustomEvent('oss:view', { detail: { viewId } }));
+    if (viewId === 'meu-espaco') return loadHomeView();
     return;
   }
 
