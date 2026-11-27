@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Demonstração do OSS para a gestão integrada de clubes, equipes, atletas, espaços e processos.">
     <title>OSS · Gestão do clube</title>
-    <link rel="stylesheet" href="./styles.css?v=2026-11-27-clube-oss-3">
-    <link rel="stylesheet" href="./demo-polish.css?v=2026-11-27-clube-oss-3">
+    <link rel="stylesheet" href="./styles.css?v=2026-11-27-clube-oss-4">
+    <link rel="stylesheet" href="./demo-polish.css?v=2026-11-27-clube-oss-4">
     <script src="./demo-mode.js" defer></script>
     <script src="./main.js?v=2026-11-27-clube-fluxos-2" defer></script>
   </head>
@@ -54,12 +54,18 @@
           </button>
         </nav>
 
-        <p class="sidebar-section-label sidebar-section-label--group">Gestão do clube</p>
-        <nav class="primary-nav" aria-label="Gestão do clube">
+        <p class="sidebar-section-label sidebar-section-label--group">Open OSS</p>
+        <nav class="primary-nav" aria-label="Open OSS">
+          <button class="nav-item" type="button" data-nav="catalogo-modulos"><span class="nav-item__symbol">▦</span><span>Módulos do clube</span></button>
+          <button class="nav-item" type="button" data-nav="assistente"><span class="nav-item__symbol">✳</span><span>Assistente IA</span><span class="nav-item__badge">PRÉVIA</span></button>
+        </nav>
+
+        <p class="sidebar-section-label sidebar-section-label--group">Clube Olímpico</p>
+        <nav class="primary-nav" aria-label="Clube Olímpico">
           <button class="nav-item" type="button" data-nav="equipe"><span class="nav-item__symbol">◉</span><span>Equipes</span></button>
           <button class="nav-item" type="button" data-nav="pessoas"><span class="nav-item__symbol">♙</span><span>Pessoas e atletas</span></button>
           <button class="nav-item" type="button" data-nav="agenda"><span class="nav-item__symbol">▦</span><span>Instalações e agenda</span></button>
-          <button class="nav-item" type="button" data-nav="fluxos"><span class="nav-item__symbol">⇢</span><span>Processos</span></button>
+          <button class="nav-item" type="button" data-nav="fluxos"><span class="nav-item__symbol">⇢</span><span>Fluxogramas</span></button>
         </nav>
 
         <p class="sidebar-section-label sidebar-section-label--group admin-nav-label" id="admin-nav-label" hidden>Administração</p>
@@ -177,20 +183,32 @@
 
         <section class="oss-empty-installed" id="oss-empty-installed">
           <div class="oss-installed-header">
-            <div><span class="oss-kicker">PLATAFORMA DO CLUBE</span><h2>Operação esportiva</h2><p>Um único workspace conecta a rotina das equipes aos espaços e processos do clube.</p></div>
+            <div><span class="oss-kicker">MÓDULOS DO OLÍMPICO</span><h2>Operação esportiva</h2><p>O workspace do clube organiza atletas, equipes, instalações e processos dentro do Open OSS.</p></div>
           </div>
           <div class="oss-installed-grid" id="oss-installed-home">
             <article class="oss-module-card oss-module-card--club-demo">
-              <div class="oss-module-card__meta"><span class="oss-module-card__icon" aria-hidden="true">◉</span><span class="oss-module-card__category">Pacote integrado · 4 áreas</span></div>
-              <h2>Gestão do clube</h2>
-              <p>Cadastros, equipes, reserva de espaços e processos operam dentro da plataforma OSS.</p>
-              <div class="oss-module-card__actions"><button type="button" data-nav="pessoas">Abrir cadastro →</button><button type="button" data-nav="agenda">Ver agenda →</button></div>
+              <div class="oss-module-card__meta"><span class="oss-module-card__icon" aria-hidden="true">♙</span><span class="oss-module-card__category">Módulo · Pessoas</span></div>
+              <h2>Atletas e cadastros</h2>
+              <p>Pré-cadastro, responsáveis, documentos e situação do elenco.</p>
+              <div class="oss-module-card__actions"><button type="button" data-nav="pessoas">Abrir módulo →</button></div>
             </article>
             <article class="oss-module-card oss-module-card--club-demo">
-              <div class="oss-module-card__meta"><span class="oss-module-card__icon" aria-hidden="true">⇢</span><span class="oss-module-card__category">Processos visuais</span></div>
-              <h2>Fluxos acompanhados</h2>
-              <p>Veja etapas, responsáveis e pendências desde a solicitação até a conclusão.</p>
-              <div class="oss-module-card__actions"><button type="button" data-nav="fluxos">Abrir processos →</button></div>
+              <div class="oss-module-card__meta"><span class="oss-module-card__icon" aria-hidden="true">◉</span><span class="oss-module-card__category">Módulo · Equipes</span></div>
+              <h2>Equipes e comissão</h2>
+              <p>Modalidades, categorias, atletas e responsáveis técnicos.</p>
+              <div class="oss-module-card__actions"><button type="button" data-nav="equipe">Abrir módulo →</button></div>
+            </article>
+            <article class="oss-module-card oss-module-card--club-demo">
+              <div class="oss-module-card__meta"><span class="oss-module-card__icon" aria-hidden="true">▦</span><span class="oss-module-card__category">Módulo · Instalações</span></div>
+              <h2>Quadras e agenda</h2>
+              <p>Grade de horários, reservas, treinos e jogos por espaço.</p>
+              <div class="oss-module-card__actions"><button type="button" data-nav="agenda">Abrir módulo →</button></div>
+            </article>
+            <article class="oss-module-card oss-module-card--club-demo">
+              <div class="oss-module-card__meta"><span class="oss-module-card__icon" aria-hidden="true">⇢</span><span class="oss-module-card__category">Módulo · Processos</span></div>
+              <h2>Fluxogramas do clube</h2>
+              <p>Cadastro de atleta e organização de jogos, da solicitação à conclusão.</p>
+              <div class="oss-module-card__actions"><button type="button" data-nav="fluxos">Ver fluxogramas →</button></div>
             </article>
           </div>
         </section>
@@ -326,22 +344,19 @@
       <!-- ========================================== -->
       <section class="main-view oss-view" id="view-catalogo-modulos" hidden aria-labelledby="module-catalog-heading">
         <div class="page-heading">
-          <div class="page-heading__copy"><p class="oss-kicker">CATÁLOGO OSS · 64 MÓDULOS + PACOTES</p><h1 id="module-catalog-heading">Apps e pacotes para o trabalho real.</h1><p>Instale módulos individuais ou pacotes conectados com automações n8n prontas. Tudo vira seu e pode ser editado.</p></div>
-          <div class="oss-heading-actions">
-            <button class="button button--quiet" type="button" id="module-import-btn">Importar JSON</button>
-            <input id="module-import-file" type="file" accept=".json,application/json" hidden>
-            <button class="button button--primary" type="button" data-nav="criar-modulo">＋ Criar módulo</button>
-          </div>
+          <div class="page-heading__copy"><p class="oss-kicker">WORKSPACE · CLUBE OLÍMPICO</p><h1 id="module-catalog-heading">Módulos do clube.</h1><p>Uma visão dos módulos que organizam o trabalho do Olímpico dentro do Open OSS.</p></div>
+          <div class="oss-heading-actions"><span class="oss-ai-status">Prévia de interface</span></div>
         </div>
         <section class="oss-packs-section" aria-labelledby="oss-packs-heading">
-          <div class="oss-packs-head">
-            <div><span class="oss-kicker">PACOTES PRONTOS (MULTI-MÓDULOS + N8N)</span><h2 id="oss-packs-heading">Instale fluxos completos em 1 clique</h2></div>
+          <div class="oss-packs-head"><div><span class="oss-kicker">OPERAÇÃO ESPORTIVA</span><h2 id="oss-packs-heading">Áreas conectadas do clube</h2></div></div>
+          <div class="oss-catalog-grid oss-catalog-grid--club" id="module-catalog-grid" aria-label="Módulos do Clube Olímpico">
+            <article class="oss-module-card oss-module-card--club-demo"><div class="oss-module-card__meta"><span class="oss-module-card__icon">♙</span><span class="oss-module-card__category">Pessoas</span></div><h2>Atletas e cadastros</h2><p>Dados de atletas e responsáveis, documentos e acompanhamento de aprovações.</p><div class="oss-module-card__actions"><button type="button" data-nav="pessoas">Abrir módulo →</button></div></article>
+            <article class="oss-module-card oss-module-card--club-demo"><div class="oss-module-card__meta"><span class="oss-module-card__icon">◉</span><span class="oss-module-card__category">Equipes</span></div><h2>Equipes e comissão</h2><p>Modalidades, categorias, elenco e responsáveis técnicos da temporada.</p><div class="oss-module-card__actions"><button type="button" data-nav="equipe">Abrir módulo →</button></div></article>
+            <article class="oss-module-card oss-module-card--club-demo"><div class="oss-module-card__meta"><span class="oss-module-card__icon">▦</span><span class="oss-module-card__category">Instalações</span></div><h2>Quadras e agenda</h2><p>Reservas por local e horário, treinos, jogos e disponibilidade das instalações.</p><div class="oss-module-card__actions"><button type="button" data-nav="agenda">Abrir módulo →</button></div></article>
+            <article class="oss-module-card oss-module-card--club-demo"><div class="oss-module-card__meta"><span class="oss-module-card__icon">⇢</span><span class="oss-module-card__category">Processos</span></div><h2>Fluxogramas</h2><p>Etapas, responsáveis e aprovações para cadastros e atividades esportivas.</p><div class="oss-module-card__actions"><button type="button" data-nav="fluxos">Ver fluxogramas →</button></div></article>
           </div>
-          <div class="oss-packs-grid" id="module-packs-grid" aria-live="polite"></div>
         </section>
-        <search class="oss-catalog-toolbar"><label for="module-catalog-search">Buscar no catálogo</label><input id="module-catalog-search" type="search" placeholder="Ex.: férias, contas a pagar, frota, LGPD, chamados"></search>
-        <div class="oss-category-filters" id="module-category-filters" aria-label="Filtrar categorias"></div>
-        <div class="oss-catalog-grid" id="module-catalog-grid" aria-live="polite"><div class="oss-loading">Carregando módulos…</div></div>
+        <p class="oss-assistant-footnote">Esta é uma prévia visual com registros fictícios; não há publicação ou conexão com dados do clube.</p>
       </section>
 
       <section class="main-view oss-view" id="view-criar-modulo" hidden aria-labelledby="module-builder-heading">
@@ -454,30 +469,27 @@
       <section class="main-view oss-view" id="view-assistente" hidden aria-labelledby="assistant-heading">
         <div class="page-heading">
           <div class="page-heading__copy">
-            <p class="oss-kicker">ASSISTENTE OSS · MULTI-IA</p>
-            <h1 id="assistant-heading">Construa conversando.</h1>
-            <p>Conecte sua própria conta/API (ChatGPT/OpenAI, DeepSeek, Gemini, Claude, Groq, OpenRouter ou Ollama local grátis) e peça módulos ou fluxos n8n.</p>
+            <p class="oss-kicker">OPEN OSS · ASSISTENTE</p>
+            <h1 id="assistant-heading">IA para módulos e processos.</h1>
+            <p>Veja como o Assistente OSS pode transformar uma necessidade do clube em uma proposta revisável.</p>
           </div>
           <div class="oss-heading-actions">
-            <span class="oss-ai-status" id="assistant-status">Conexão necessária</span>
-            <button class="button button--quiet" type="button" id="assistant-toggle-config">⚙ Conectar / Trocar IA</button>
+            <span class="oss-ai-status">Prévia visual · sem conexão</span>
           </div>
         </div>
-
-        <section id="assistant-config-panel" class="oss-ai-config-panel" hidden aria-label="Configurar provedor de IA">
-          <div class="oss-ai-config-head">
-            <div>
-              <strong>Escolha ou conecte um servidor de IA</strong>
-              <p>Clique em um provedor abaixo para preencher automaticamente. Para Ollama/LM Studio locais, não precisa de API Key.</p>
-            </div>
-            <button type="button" class="button button--quiet button--small" id="assistant-close-config">Fechar</button>
+        <div class="oss-assistant-shell">
+          <div class="oss-assistant-intro"><span class="oss-assistant-spark">✳</span><div><strong>Assistente de demonstração</strong><p>Exemplo visual de uma conversa para desenhar a operação do Olímpico.</p></div></div>
+          <div class="oss-assistant-messages" aria-label="Exemplo de conversa com o Assistente">
+            <article class="oss-assistant-message oss-assistant-message--system">Olá! Posso ajudar a organizar módulos e fluxogramas do clube. As propostas aparecem para revisão antes de qualquer publicação.</article>
+            <article class="oss-assistant-message oss-assistant-message--user">Quero organizar o cadastro de atletas e controlar as reservas das quadras.</article>
+            <article class="oss-assistant-message oss-assistant-message--system"><strong>Proposta para o Clube Olímpico</strong><br><br><strong>Módulos</strong><br>• Atletas e responsáveis<br>• Equipes e comissão técnica<br>• Instalações e agenda<br><br><strong>Fluxos</strong><br>• Pré-cadastro → documentos → exame → vínculo com equipe<br>• Solicitação de jogo → reserva da quadra → aprovação → resultado</article>
           </div>
-          <div id="assistant-provider-grid" class="oss-ai-provider-grid"></div>
-          <form id="assistant-provider-form" class="oss-ai-provider-form" hidden></form>
-          <div id="assistant-config-feedback" class="oss-runtime-status" aria-live="polite"></div>
-        </section>
-
-        <div class="oss-assistant-shell"><div class="oss-assistant-intro"><span class="oss-assistant-spark">✳</span><div><strong>O que vamos montar?</strong><p>Descreva um app, processo ou fluxo entre módulos e receba uma proposta revisável.</p></div></div><div class="oss-assistant-messages" id="assistant-messages" aria-live="polite"><article class="oss-assistant-message oss-assistant-message--system">Conecte qualquer IA acima (ChatGPT/OpenAI, DeepSeek, Gemini, Claude, Groq, OpenRouter ou Ollama local) para começar. O Assistente oferece sugestões e nunca altera registros sozinho.</article></div><form id="assistant-chat-form" class="oss-assistant-compose"><label class="visually-hidden" for="assistant-message">Descreva o que deseja criar</label><textarea id="assistant-message" rows="2" placeholder="Ex.: crie um fluxo n8n quando um reembolso for aprovado para criar uma conta a pagar"></textarea><button class="button button--primary" type="submit">Enviar <span aria-hidden="true">↑</span></button></form><div class="oss-assistant-footnote" id="assistant-connection-note">Clique em "Conectar / Trocar IA" para escolher um provedor.</div></div>
+          <div class="oss-assistant-compose" aria-label="Campo demonstrativo do Assistente">
+            <textarea rows="2" placeholder="Descreva o que deseja organizar…" disabled></textarea>
+            <button class="button button--primary" type="button" disabled>Enviar <span aria-hidden="true">↑</span></button>
+          </div>
+          <div class="oss-assistant-footnote">Prévia de interface: o Assistente não está conectado a um provedor de IA nesta demonstração.</div>
+        </div>
       </section>
 
       <section class="main-view oss-view" id="view-publicacao" hidden aria-labelledby="publish-heading">
@@ -744,8 +756,8 @@
       <section class="main-view" id="view-fluxos" hidden>
         <div class="page-heading workflow-page-heading">
           <div class="page-heading__copy">
-            <h1>Fluxos de processo</h1>
-            <p>Acompanhe os fluxos da equipe, com responsáveis, aprovações, prazos e histórico.</p>
+            <h1>Fluxogramas do Olímpico</h1>
+            <p>Veja o cadastro de atletas e a organização de jogos, com etapas, responsáveis e aprovações.</p>
           </div>
         </div>
         <div class="workflow-container">

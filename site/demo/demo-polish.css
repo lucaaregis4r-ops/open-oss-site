@@ -48,6 +48,8 @@ body { background: var(--color-paper); }
 .oss-installed-header { margin-bottom: 14px; }
 .oss-installed-header h2 { margin-top: 4px; }
 .oss-installed-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.oss-installed-grid#oss-installed-home { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.oss-catalog-grid--club { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .oss-module-card--club-demo { min-height: 150px; padding: 16px 18px; border-radius: 14px; }
 .oss-module-card--club-demo h2 { margin-top: 10px; }
 .oss-module-card--club-demo p { max-width: 58ch; }
@@ -74,6 +76,8 @@ body { background: var(--color-paper); }
   .club-metrics article { min-height: 76px; padding: 12px; }
   .club-metric__symbol { width: 36px; height: 36px; }
   .oss-installed-grid { grid-template-columns: 1fr; }
+  #oss-installed-home { grid-template-columns: 1fr; }
+  .oss-catalog-grid--club { grid-template-columns: 1fr; }
   .workflow-steps { grid-template-columns: repeat(var(--step-count, 4), minmax(210px, 1fr)); gap: 20px; }
 }
 
