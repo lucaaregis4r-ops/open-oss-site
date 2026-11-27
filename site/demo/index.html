@@ -3,257 +3,1927 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Demonstração interativa de gestão esportiva para clubes e equipes.">
-    <title>Clube OSS · Gestão esportiva</title>
+    <meta name="description" content="Demonstração do OSS para a gestão integrada de clubes, equipes, atletas, espaços e processos.">
+    <title>OSS · Gestão do clube</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./processes.js" defer></script>
-    <script src="./app.js" defer></script>
+    <link rel="stylesheet" href="./demo-polish.css">
+    <script src="./demo-mode.js" defer></script>
+    <script src="./main.js" defer></script>
   </head>
   <body>
-    <main class="login-screen" id="login-screen" aria-labelledby="login-title">
-      <div class="login-panel">
-        <section class="login-copy">
-          <a class="wordmark" href="#login-screen" aria-label="Clube OSS, início">
-            <span class="wordmark__glyph" aria-hidden="true">C</span>
-            <span>clube<span class="wordmark__accent">oss</span></span>
-          </a>
-          <div class="login-intro">
-            <p class="eyebrow">Gestão esportiva</p>
-            <h1 id="login-title">O clube em movimento.</h1>
-            <p>Cadastros, espaços e equipes seguem o mesmo processo, do primeiro pedido à confirmação.</p>
-          </div>
-          <form class="login-form" id="login-form" autocomplete="on">
-            <div class="field">
-              <label for="login-email">E-mail</label>
-              <input id="login-email" name="email" type="text" inputmode="email" value="olympico@br" autocomplete="username" required>
-            </div>
-            <div class="field">
-              <label for="login-password">Senha</label>
-              <input id="login-password" name="password" type="password" value="" autocomplete="current-password" required>
-            </div>
-            <button class="button button--primary login-submit" type="submit">Entrar na demonstração</button>
-            <p class="form-message" id="login-feedback" role="status" aria-live="polite"></p>
-          </form>
-          <p class="demo-credentials"><strong>Acesso demonstrativo</strong><span>olympico@br&nbsp; / &nbsp;olympico 80</span></p>
-          <p class="login-note">Use dados de exemplo. As alterações ficam somente neste navegador.</p>
-        </section>
+    <div id="oss-live-announcer" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+    <a class="skip-link" href="#login-title" id="skip-link">Pular para o conteúdo</a>
 
-        <aside class="login-preview" aria-label="Prévia dos processos de gestão">
-          <div class="preview-head">
-            <div>
-              <span class="preview-overline">Visão da operação</span>
-              <h2>Do pedido à quadra.</h2>
-            </div>
-            <span class="preview-date" id="preview-date"></span>
+    <main class="login-page" id="login-screen" aria-labelledby="login-title">
+      <section class="login-card">
+        <a class="wordmark login-wordmark" href="#login-screen" aria-label="OSS">
+          <span>OSS<span class="wordmark__dot">.</span></span>
+        </a>
+        <h1 id="login-title">Entre no OSS</h1>
+        <p class="login-intro">Acesse o espaço de trabalho da sua equipe.</p>
+        <form id="login-form" autocomplete="on">
+          <label for="login-email">E-mail</label>
+          <input id="login-email" name="email" type="email" value="olympico@br" autocomplete="username" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="next" required>
+          <div class="login-password-head">
+            <label for="login-password">Senha</label>
+            <button type="button" id="toggle-login-password" class="login-password-toggle" aria-pressed="false" aria-label="Mostrar senha">Mostrar</button>
           </div>
-          <div class="preview-workflow" aria-hidden="true">
-            <div class="preview-lane">
-              <span class="preview-lane__label">Cadastro</span>
-              <div class="preview-route">
-                <span class="preview-node preview-node--done">Pré-cadastro</span>
-                <span class="preview-link"></span>
-                <span class="preview-node preview-node--current">Conferência</span>
-                <span class="preview-link"></span>
-                <span class="preview-node">Atleta ativo</span>
-              </div>
-            </div>
-            <div class="preview-lane preview-lane--court">
-              <span class="preview-lane__label">Reserva</span>
-              <div class="preview-route">
-                <span class="preview-node preview-node--done">Solicitação</span>
-                <span class="preview-link"></span>
-                <span class="preview-node preview-node--current">Disponibilidade</span>
-                <span class="preview-link"></span>
-                <span class="preview-node">Confirmada</span>
-              </div>
-            </div>
-          </div>
-          <div class="preview-agenda">
-            <div class="preview-agenda__head"><span>Agenda de hoje</span><span>03 espaços</span></div>
-            <div class="preview-slot"><time>08:00</time><span class="preview-slot__bar preview-slot__bar--lime"></span><span>Futsal Sub-15</span></div>
-            <div class="preview-slot"><time>10:30</time><span class="preview-slot__bar preview-slot__bar--blue"></span><span>Vôlei feminino</span></div>
-            <div class="preview-slot"><time>14:00</time><span class="preview-slot__bar preview-slot__bar--coral"></span><span>Basquete Sub-13</span></div>
-          </div>
-          <p class="preview-caption">Processos claros. Espaços bem aproveitados.</p>
-        </aside>
-      </div>
+          <input id="login-password" name="password" type="password" autocomplete="current-password" enterkeyhint="done" required>
+          <p class="login-error" id="login-error" role="alert" hidden></p>
+          <button class="button button--primary login-submit" id="login-submit" type="submit">Entrar</button>
+        </form>
+        <p class="login-help">Demonstração interativa da plataforma OSS para gestão de clubes.</p>
+        <p class="demo-login-note"><strong>Acesso demonstrativo</strong><span>olympico@br&nbsp; / &nbsp;olympico 80</span><small>Os cadastros e as reservas ficam somente neste navegador.</small></p>
+      </section>
     </main>
 
-    <div class="app-shell" id="app-shell" hidden>
-      <aside class="sidebar" id="sidebar">
-        <div class="sidebar-top">
-          <a class="wordmark wordmark--sidebar" href="#dashboard" aria-label="Clube OSS, painel">
-            <span class="wordmark__glyph" aria-hidden="true">C</span>
-            <span>clube<span class="wordmark__accent">oss</span></span>
+    <div id="app-shell" class="app-shell" hidden>
+      <aside class="app-sidebar" id="app-sidebar" aria-label="Navegação do OSS">
+        <div class="sidebar-brand">
+          <a class="wordmark" href="#main" aria-label="OSS, início" data-nav="meu-espaco">
+            <span>OSS<span class="wordmark__dot">.</span></span>
           </a>
-          <button class="icon-button sidebar-close" id="close-sidebar" type="button" aria-label="Fechar navegação">×</button>
-          <button class="tenant-switcher" id="tenant-switcher" type="button" aria-label="Clube da demonstração">
-            <span class="tenant-mark" aria-hidden="true">O</span>
-            <span><strong>Clube Olympico</strong><small>Ambiente de demonstração</small></span>
-            <span class="tenant-caret" aria-hidden="true">⌄</span>
-          </button>
-          <nav class="primary-nav" aria-label="Navegação principal">
-            <p class="nav-label">Operação</p>
-            <button class="nav-item is-active" type="button" data-view="dashboard" aria-current="page">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"></rect><rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="11" width="7" height="10" rx="1.5"></rect><rect x="3" y="14" width="8" height="7" rx="1.5"></rect></svg>
-              <span>Visão geral</span>
-              <span class="nav-count" id="nav-pending-count">0</span>
-            </button>
-            <button class="nav-item" type="button" data-view="people">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 20v-1.5a5.5 5.5 0 0 1 11 0V20zM16 5.5a3 3 0 0 1 0 5.8M17.5 14a4.5 4.5 0 0 1 3 4.3V20h-3"></path></svg>
-              <span>Pessoas</span>
-            </button>
-            <button class="nav-item" type="button" data-view="agenda">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 10h18M8 14h3M8 17h7"></path></svg>
-              <span>Agenda de espaços</span>
-            </button>
-            <button class="nav-item" type="button" data-view="processes">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="6" height="5" rx="1.3"></rect><rect x="15" y="15" width="6" height="5" rx="1.3"></rect><rect x="15" y="4" width="6" height="5" rx="1.3"></rect><path d="M9 6.5h3a3 3 0 0 1 3 3V15M9 6.5h6"></path></svg>
-              <span>Processos</span>
-            </button>
-          </nav>
+          <span class="sidebar-brand__caption">Gestão esportiva</span>
         </div>
+
+        <p class="sidebar-section-label">Workspace</p>
+        <nav class="primary-nav" aria-label="Workspace">
+          <button class="nav-item nav-item--current" type="button" data-nav="meu-espaco" aria-current="page">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"></rect></svg>
+            <span>Início</span>
+          </button>
+        </nav>
+
+        <p class="sidebar-section-label sidebar-section-label--group">Gestão do clube</p>
+        <nav class="primary-nav" aria-label="Gestão do clube">
+          <button class="nav-item" type="button" data-nav="equipe"><span class="nav-item__symbol">◉</span><span>Equipes</span></button>
+          <button class="nav-item" type="button" data-nav="pessoas"><span class="nav-item__symbol">♙</span><span>Pessoas e atletas</span></button>
+          <button class="nav-item" type="button" data-nav="agenda"><span class="nav-item__symbol">▦</span><span>Instalações e agenda</span></button>
+          <button class="nav-item" type="button" data-nav="fluxos"><span class="nav-item__symbol">⇢</span><span>Processos</span></button>
+        </nav>
+
+        <p class="sidebar-section-label sidebar-section-label--group admin-nav-label" id="admin-nav-label" hidden>Administração</p>
+        <nav class="primary-nav admin-nav" id="admin-nav" aria-label="Administração do OSS" hidden>
+          <button class="nav-item" type="button" data-nav="administracao-contas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 20v-1.3a5.5 5.5 0 0 1 11 0V20M17 8h4M19 6v4M16.5 16.5h5M19 14v5"></path></svg>
+            <span>Usuários e acessos</span>
+          </button>
+          <button class="nav-item" type="button" data-nav="administracao-processos">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14M5 12h14M5 19h14"></path><circle cx="8" cy="5" r="2"></circle><circle cx="16" cy="12" r="2"></circle><circle cx="10" cy="19" r="2"></circle></svg>
+            <span>Processos</span>
+          </button>
+        </nav>
+
         <div class="sidebar-bottom">
-          <div class="demo-status"><span class="demo-status__mark" aria-hidden="true">D</span><span><strong>Dados de demonstração</strong><small>Privados neste navegador</small></span></div>
-          <button class="sidebar-action" id="reset-demo" type="button">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0 2 5M20 4v7h-7"></path></svg>
-            <span>Restaurar exemplo</span>
-          </button>
-          <button class="sidebar-action" id="logout-button" type="button">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M12 3h5a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5"></path></svg>
-            <span>Sair da demonstração</span>
-          </button>
-          <div class="sidebar-user">
-            <span class="user-monogram" aria-hidden="true">AC</span>
-            <span><strong>Administração</strong><small>Coordenação do clube</small></span>
-            <span class="user-menu" aria-hidden="true">···</span>
+          <div class="sidebar-club-card">
+            <span class="sidebar-club-card__mark" aria-hidden="true">O</span>
+            <span class="sidebar-club-card__text"><strong id="sidebar-club-name">Clube Olympico</strong><span>Ambiente demonstrativo</span></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
           </div>
+          <p class="sidebar-version">OSS <span>Open source, do seu jeito</span></p>
         </div>
       </aside>
-      <button class="sidebar-scrim" id="sidebar-scrim" type="button" aria-label="Fechar navegação" tabindex="-1"></button>
+      <button class="sidebar-scrim" id="sidebar-scrim" type="button" aria-label="Fechar navegação" hidden></button>
 
-      <main class="app-main">
-        <header class="topbar">
-          <div class="topbar-leading">
-            <button class="icon-button menu-toggle" id="open-sidebar" type="button" aria-label="Abrir navegação" aria-expanded="false" aria-controls="sidebar">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
-            <div class="breadcrumbs"><span>Clube Olympico</span><span class="breadcrumb-sep" aria-hidden="true">/</span><strong id="page-title">Visão geral</strong></div>
+      <div class="app-main" id="app-main">
+    <header class="topbar">
+      <div class="topbar__inner container">
+        <button class="sidebar-toggle" id="btn-sidebar-toggle" type="button" aria-label="Abrir navegação" aria-controls="app-sidebar" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
+        <span class="mobile-wordmark" aria-hidden="true">OSS<span class="wordmark__dot">.</span></span>
+        <div class="topbar__tools">
+          <label class="search-box" for="global-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="10.8" cy="10.8" r="6.8"></circle>
+              <path d="m16 16 4.3 4.3"></path>
+            </svg>
+            <span class="visually-hidden">Buscar no OSS</span>
+            <input id="global-search" type="search" autocomplete="off" placeholder="Buscar módulos, registros, automações ou ações" aria-keyshortcuts="Control+K Meta+K">
+            <kbd aria-hidden="true">Ctrl K</kbd>
+          </label>
+
+          <div class="user-chip" id="user-chip-menu" aria-label="Perfil atual">
+            <span class="user-chip__initials" id="profile-initials">AO</span>
+            <span class="user-chip__copy">
+              <span class="user-chip__name" id="profile-name">Administração OSS</span>
+              <span class="user-chip__role" id="profile-role">Administrador · Workspace</span>
+            </span>
           </div>
-          <div class="topbar-actions">
-            <span class="topbar-demo"><span>Conta demonstrativa</span><kbd>Dados fictícios</kbd></span>
-            <button class="icon-button help-button" id="show-demo-info" type="button" aria-label="Informações da demonstração">i</button>
-            <button class="topbar-user" id="topbar-user" type="button" aria-label="Conta de demonstração, sair">
-              <span class="user-monogram user-monogram--top" aria-hidden="true">AC</span>
-              <span class="topbar-user__name">Administração</span>
-              <span class="user-caret" aria-hidden="true">⌄</span>
-            </button>
-          </div>
-        </header>
-
-        <div class="page-content" id="page-content">
-          <section class="view is-visible" id="view-dashboard" data-view-panel="dashboard" aria-labelledby="dashboard-heading">
-            <div class="page-heading page-heading--dashboard">
-              <div><p class="eyebrow" id="today-label">Sexta-feira, 27 de novembro</p><h1 id="dashboard-heading">O clube, em um só lugar.</h1><p class="page-lede">Acompanhe cadastros, ocupação dos espaços e o que precisa de atenção.</p></div>
-              <div class="heading-actions"><button class="button button--quiet" type="button" data-goto="processes" data-process-kind="registration">Ver processos</button><button class="button button--primary" type="button" data-action="new-reservation">+ Nova reserva</button></div>
-            </div>
-            <div class="dashboard-grid">
-              <section class="panel panel--welcome" aria-labelledby="welcome-heading">
-                <div class="welcome-copy"><p class="panel-kicker">Resumo da operação</p><h2 id="welcome-heading">Bom dia, equipe.</h2><p>Os próximos passos do clube estão organizados por responsável.</p><button class="text-button" type="button" data-goto="processes" data-process-kind="registration">Acompanhar os processos <span aria-hidden="true">→</span></button></div>
-                <div class="welcome-art" aria-hidden="true"><div class="welcome-orbit welcome-orbit--outer"></div><div class="welcome-orbit welcome-orbit--inner"></div><div class="welcome-court"><span></span><span></span><i></i><b></b></div><div class="welcome-caption">Clube Olympico</div></div>
-              </section>
-
-              <section class="panel panel--metrics" aria-label="Resumo dos registros">
-                <div class="metric"><span class="metric-label">Atletas na base</span><strong id="metric-athletes">0</strong><span class="metric-foot">em todas as modalidades</span></div>
-                <div class="metric"><span class="metric-label">Cadastros em análise</span><strong id="metric-pending">0</strong><span class="metric-foot" id="metric-pending-foot">aguardando a secretaria</span></div>
-                <div class="metric"><span class="metric-label">Reservas de hoje</span><strong id="metric-bookings">0</strong><span class="metric-foot">em todos os espaços</span></div>
-              </section>
-
-              <section class="panel panel--agenda" aria-labelledby="today-agenda-heading">
-                <div class="panel-heading"><div><h2 id="today-agenda-heading">Agenda de hoje</h2><p>Ocupação por espaço esportivo</p></div><button class="icon-button icon-button--small" type="button" data-goto="agenda" aria-label="Abrir agenda">↗</button></div>
-                <div class="agenda-preview" id="agenda-preview"></div>
-                <button class="panel-link" type="button" data-goto="agenda">Ver agenda completa <span aria-hidden="true">→</span></button>
-              </section>
-
-              <section class="panel panel--queue" aria-labelledby="queue-heading">
-                <div class="panel-heading"><div><h2 id="queue-heading">Cadastros para revisar</h2><p>Etapas pendentes da secretaria</p></div><span class="count-pill" id="queue-count">0</span></div>
-                <div class="queue-list" id="queue-list"></div>
-                <button class="panel-link" type="button" data-goto="people">Abrir cadastros <span aria-hidden="true">→</span></button>
-              </section>
-
-              <section class="panel panel--process" aria-labelledby="process-highlight-heading">
-                <div class="panel-heading"><div><h2 id="process-highlight-heading">Próximo passo</h2><p>Reserva de espaço</p></div><span class="state-pill state-pill--active">Em andamento</span></div>
-                <div class="next-step-body"><span class="next-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v15H4zM8 3v4M16 3v4M4 9h16M8 13h3M8 16h5"></path></svg></span><div><strong id="next-step-title">Conferir disponibilidade</strong><span id="next-step-detail">Selecione um espaço e um horário para consultar a agenda.</span></div></div>
-                <button class="button button--outline" type="button" data-goto="processes" data-process-kind="reservation">Ver fluxo de reserva</button>
-              </section>
-            </div>
-            <p class="page-disclaimer">Ambiente demonstrativo. Os dados são fictícios e as alterações ficam neste navegador.</p>
-          </section>
-
-          <section class="view" id="view-people" data-view-panel="people" aria-labelledby="people-heading" hidden>
-            <div class="page-heading"><div><p class="eyebrow">Pessoas e equipes</p><h1 id="people-heading">Cadastro de atletas</h1><p class="page-lede">Uma ficha por atleta, com equipe e situação visíveis para todos os setores.</p></div><div class="heading-actions"><button class="button button--quiet" type="button" data-goto="processes" data-process-kind="registration">Ver fluxo de cadastro</button><button class="button button--primary" type="button" data-action="new-athlete">+ Novo cadastro</button></div></div>
-            <section class="panel people-panel" aria-labelledby="people-table-heading">
-              <div class="table-toolbar"><div><h2 id="people-table-heading">Atletas</h2><p><span id="people-count">0</span> registros de exemplo</p></div><div class="table-filters"><label class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg><span class="visually-hidden">Buscar atleta</span><input id="people-search" type="search" placeholder="Buscar nome ou equipe"></label><select id="people-status-filter" aria-label="Filtrar por situação"><option value="all">Todas as situações</option><option value="active">Ativo</option><option value="pending">Em análise</option><option value="documents">Com pendência</option></select></div></div>
-              <div class="table-scroll"><table class="data-table"><thead><tr><th scope="col">Atleta</th><th scope="col">Equipe</th><th scope="col">Modalidade</th><th scope="col">Etapa do cadastro</th><th scope="col">Situação</th><th scope="col"><span class="visually-hidden">Ações</span></th></tr></thead><tbody id="people-table-body"></tbody></table></div>
-              <p class="empty-state" id="people-empty" hidden>Nenhum cadastro corresponde à busca. Ajuste os filtros para ver outros atletas.</p>
-            </section>
-            <section class="panel registration-spotlight" aria-labelledby="registration-spotlight-heading"><div class="spotlight-copy"><p class="panel-kicker">Processo acompanhado</p><h2 id="registration-spotlight-heading">Cada etapa deixa claro o próximo passo.</h2><p>Secretaria, família e equipe veem o que falta e quem precisa agir.</p></div><div class="mini-stage-list" id="registration-mini-flow"></div><button class="button button--outline" type="button" data-goto="processes" data-process-kind="registration">Abrir processo de cadastro</button></section>
-          </section>
-
-          <section class="view" id="view-agenda" data-view-panel="agenda" aria-labelledby="agenda-heading" hidden>
-            <div class="page-heading"><div><p class="eyebrow">Instalações e horários</p><h1 id="agenda-heading">Agenda de espaços</h1><p class="page-lede">Veja a ocupação antes de confirmar um treino ou uma atividade.</p></div><div class="heading-actions"><button class="button button--quiet" type="button" data-goto="processes" data-process-kind="reservation">Como funciona</button><button class="button button--primary" type="button" data-action="new-reservation">+ Nova reserva</button></div></div>
-            <section class="panel agenda-panel" aria-labelledby="schedule-heading">
-              <div class="agenda-toolbar"><div class="agenda-toolbar__title"><h2 id="schedule-heading">Agenda por espaço</h2><p id="selected-date-label"></p></div><div class="agenda-toolbar__controls"><button class="icon-button" id="previous-day" type="button" aria-label="Dia anterior">‹</button><label class="date-control"><span class="visually-hidden">Data da agenda</span><input id="agenda-date" type="date"></label><button class="icon-button" id="next-day" type="button" aria-label="Próximo dia">›</button><button class="button button--quiet button--today" id="agenda-today" type="button">Hoje</button></div></div>
-              <div class="agenda-legend"><span><i class="legend-mark legend-mark--futsal"></i>Futsal</span><span><i class="legend-mark legend-mark--volley"></i>Vôlei</span><span><i class="legend-mark legend-mark--basket"></i>Basquete</span><span><i class="legend-mark legend-mark--open"></i>Horário livre</span></div>
-              <div class="schedule-scroll"><div class="schedule-grid" id="schedule-grid"></div></div>
-              <p class="schedule-note">Horários ocupados não aceitam reservas sobrepostas. Clique em um horário livre para começar.</p>
-            </section>
-            <section class="panel reservation-spotlight" aria-labelledby="reservation-spotlight-heading"><div class="spotlight-copy"><p class="panel-kicker">Marcação acompanhada</p><h2 id="reservation-spotlight-heading">Da solicitação à confirmação.</h2><p>Se houver conflito, escolha outro horário ou espaço antes de salvar.</p></div><div class="reservation-flow-mini" id="reservation-mini-flow"></div><button class="button button--outline" type="button" data-goto="processes" data-process-kind="reservation">Ver processo de reserva</button></section>
-          </section>
-
-          <section class="view" id="view-processes" data-view-panel="processes" aria-labelledby="processes-heading" hidden>
-            <div class="page-heading page-heading--processes"><div><p class="eyebrow">Processos do clube</p><h1 id="processes-heading">O trabalho visível, etapa por etapa.</h1><p class="page-lede">Acompanhe responsabilidades, pendências e decisões sem perder o histórico.</p></div><div class="heading-actions"><span class="process-demo-chip"><span class="process-demo-dot"></span>Processos de exemplo</span></div></div>
-            <div class="process-tabs" role="tablist" aria-label="Tipo de processo">
-              <button class="process-tab is-selected" id="tab-registration" type="button" role="tab" aria-selected="true" aria-controls="process-panel" data-process-kind="registration">Cadastro de atleta<span id="registration-tab-count">0</span></button>
-              <button class="process-tab" id="tab-reservation" type="button" role="tab" aria-selected="false" aria-controls="process-panel" data-process-kind="reservation" tabindex="-1">Reserva de espaço<span id="reservation-tab-count">0</span></button>
-            </div>
-            <section class="process-panel" id="process-panel" role="tabpanel" aria-labelledby="tab-registration">
-              <div class="process-overview panel"><div><span class="process-type-mark" id="process-type-mark" aria-hidden="true">P</span></div><div class="process-overview__copy"><p class="panel-kicker" id="process-template-label">Entrada de atleta</p><h2 id="process-instance-title">Cadastro em andamento</h2><p id="process-instance-description">Veja o que já foi feito, quem responde pela etapa atual e qual é a próxima ação.</p></div><div class="process-progress"><strong id="process-progress-value">0%</strong><span>do processo concluído</span><div class="progress-track"><span id="process-progress-bar"></span></div></div></div>
-              <div class="process-workspace">
-                <section class="panel process-map-panel" aria-labelledby="process-map-heading"><div class="panel-heading"><div><h2 id="process-map-heading">Mapa do processo</h2><p>Selecione uma etapa para ver detalhes e responsáveis.</p></div><div class="map-tools"><button class="icon-button icon-button--small" type="button" id="map-zoom-out" aria-label="Diminuir mapa">−</button><button class="icon-button icon-button--small" type="button" id="map-zoom-in" aria-label="Aumentar mapa">+</button><button class="icon-button icon-button--small" type="button" id="map-fit" aria-label="Enquadrar mapa">⤢</button></div></div><div class="flow-canvas" id="flow-canvas" tabindex="0" aria-label="Diagrama visual do processo"></div><div class="map-legend"><span><i class="legend-node legend-node--complete"></i>Concluído</span><span><i class="legend-node legend-node--current"></i>Etapa atual</span><span><i class="legend-node legend-node--waiting"></i>Aguardando</span><span><i class="legend-node legend-node--exception"></i>Exceção</span></div></section>
-                <aside class="panel step-inspector" id="step-inspector" aria-live="polite" aria-labelledby="step-inspector-heading"><div class="inspector-top"><span class="inspector-state" id="inspector-state">Etapa atual</span><button class="icon-button icon-button--small" id="inspector-close" type="button" aria-label="Recolher detalhes da etapa" aria-expanded="true">−</button></div><h2 id="step-inspector-heading">Conferência da secretaria</h2><p id="inspector-description">Confira os dados iniciais e registre o que precisa de complemento.</p><dl class="step-metadata"><div><dt>Responsável</dt><dd id="inspector-owner">Secretaria</dd></div><div><dt>Prazo sugerido</dt><dd id="inspector-due">2 dias úteis</dd></div><div><dt>Próxima ação</dt><dd id="inspector-next">Conferir os dados do responsável</dd></div></dl><div class="inspector-checklist" id="inspector-checklist"></div><button class="button button--primary inspector-action" id="advance-process" type="button">Concluir etapa demonstrativa</button><p class="inspector-help" id="inspector-help">Ação apenas demonstrativa. Nenhuma informação é enviada.</p></aside>
-              </div>
-              <details class="panel process-list-panel" id="process-list-details"><summary><span>Ver todas as etapas em lista</span><span class="summary-count" id="process-list-count"></span></summary><div id="process-list"></div></details>
-              <div class="process-activity panel"><div class="panel-heading"><div><h2>Atividade recente</h2><p>Histórico de exemplo deste processo</p></div><span class="activity-mark" aria-hidden="true">↻</span></div><ol class="activity-list" id="process-activity-list"></ol></div>
-            </section>
-          </section>
+          <button class="button button--quiet logout-button" type="button" id="btn-logout">Sair</button>
         </div>
-      </main>
+      </div>
+    </header>
+
+    <div class="demo-banner" role="note">
+        <span class="demo-banner__label">DEMO PÚBLICA</span>
+      <p id="tenant-banner-text">Clube Olympico · dados fictícios</p>
+      <div class="demo-banner__tools">
+        <button class="demo-help-action" type="button" data-open-dialog="preview-dialog">Sobre os dados</button>
+      </div>
     </div>
 
-    <dialog class="dialog" id="reservation-dialog" aria-labelledby="reservation-dialog-title">
-      <form id="reservation-form" method="dialog" novalidate>
-        <div class="dialog-header"><div><p class="panel-kicker">Novo horário</p><h2 id="reservation-dialog-title">Reservar espaço esportivo</h2></div><button class="icon-button" type="button" data-close-dialog="reservation-dialog" aria-label="Fechar">×</button></div>
-        <p class="dialog-lede">A agenda será conferida antes da confirmação.</p>
-        <div class="form-grid"><div class="field form-grid__wide"><label for="reservation-title">Atividade</label><input class="text-input" id="reservation-title" name="title" maxlength="100" placeholder="Ex.: Treino Sub-15 de futsal" required aria-required="true"></div><div class="field"><label for="reservation-sport">Modalidade</label><select class="text-input" id="reservation-sport" name="sport"><option>Futsal</option><option>Vôlei</option><option>Basquete</option><option>Atividade geral</option></select></div><div class="field"><label for="reservation-court">Espaço</label><select class="text-input" id="reservation-court" name="courtId" required aria-required="true"></select></div><div class="field"><label for="reservation-date">Data</label><input class="text-input" id="reservation-date" name="date" type="date" required aria-required="true"></div><div class="field field-time"><label for="reservation-start">Horário</label><div class="time-range"><input class="text-input" id="reservation-start" name="startTime" type="time" value="16:00" required aria-label="Horário de início"><span>até</span><input class="text-input" id="reservation-end" name="endTime" type="time" value="17:00" required aria-label="Horário de término"></div></div></div>
-        <p class="dialog-feedback" id="reservation-feedback" role="status" aria-live="polite"></p><div class="dialog-actions"><button class="button button--quiet" type="button" data-close-dialog="reservation-dialog">Cancelar</button><button class="button button--primary" type="submit">Verificar e reservar</button></div>
+    <main class="workspace container" id="main">
+      <p class="interaction-feedback" id="interaction-feedback" aria-live="polite" aria-atomic="true"></p>
+      <p class="search-feedback" id="search-feedback" aria-live="polite" aria-atomic="true"></p>
+
+      <!-- ========================================== -->
+      <!-- VIEW 1: MEU ESPAÇO                         -->
+      <!-- ========================================== -->
+      <section class="main-view oss-view" id="view-meu-espaco">
+        <div class="page-heading">
+          <div class="page-heading__copy">
+            <p class="page-heading__date">CLUBE OLYMPICO <span id="home-current-date"></span></p>
+            <h1 id="home-heading">Gestão do clube.</h1>
+            <p id="view-caption">Equipes, atletas, instalações e processos em um único espaço de trabalho.</p>
+          </div>
+          <div class="oss-heading-actions">
+            <button class="button button--quiet" type="button" data-nav="fluxos">Ver processos</button>
+            <button class="button button--primary" type="button" data-nav="agenda">Abrir agenda</button>
+          </div>
+        </div>
+
+        <section class="club-metrics" aria-label="Resumo de exemplo do clube">
+          <article><span class="club-metric__symbol club-metric__symbol--people" aria-hidden="true">♙</span><span class="club-metric__value" id="demo-athlete-total">12</span><span class="club-metric__label">atletas ativos</span></article>
+          <article><span class="club-metric__symbol club-metric__symbol--teams" aria-hidden="true">◉</span><span class="club-metric__value">04</span><span class="club-metric__label">equipes na temporada</span></article>
+          <article><span class="club-metric__symbol club-metric__symbol--venues" aria-hidden="true">▦</span><span class="club-metric__value">03</span><span class="club-metric__label">instalações esportivas</span></article>
+          <article><span class="club-metric__symbol club-metric__symbol--pending" aria-hidden="true">◷</span><span class="club-metric__value" id="demo-pending-total">02</span><span class="club-metric__label">cadastros para conferir</span></article>
+        </section>
+
+        <section class="oss-empty-state" aria-labelledby="oss-empty-title" hidden>
+          <div class="oss-empty-state__copy">
+            <span class="oss-kicker">SEU WORKSPACE ESTÁ PRONTO</span>
+            <h2 id="oss-empty-title">Comece do seu jeito.</h2>
+            <p>Crie um app administrativo com seus próprios campos, listas, Kanban, acessos e fluxos visuais de automação entre módulos.</p>
+            <div class="oss-empty-state__actions">
+              <button class="button button--primary" type="button" data-nav="criar-modulo">Criar do zero <span aria-hidden="true">→</span></button>
+              <button class="button button--quiet" type="button" data-nav="catalogo-modulos">Ver pacotes e 64 módulos</button>
+              <button class="button button--quiet" type="button" data-nav="automacoes">Montar fluxo n8n</button>
+            </div>
+          </div>
+          <div class="oss-empty-state__art" aria-hidden="true">
+            <div class="oss-art-window"><div class="oss-art-window__bar"><i></i><i></i><i></i><span>Construtor de apps</span></div>
+              <div class="oss-art-window__content"><span class="oss-art-field oss-art-field--wide"></span><span class="oss-art-field"></span><span class="oss-art-field"></span><span class="oss-art-field oss-art-field--wide"></span><span class="oss-art-action"></span></div>
+            </div>
+            <span class="oss-art-chip oss-art-chip--one">Módulos</span><span class="oss-art-chip oss-art-chip--two">Fluxo n8n</span>
+          </div>
+        </section>
+
+        <div class="oss-feature-row" hidden>
+          <article><span class="oss-feature-icon">▦</span><strong>Apps modulares</strong><p>Adicione módulos individuais ou pacotes conectados prontos.</p></article>
+          <article><span class="oss-feature-icon">⚡</span><strong>Fluxos estilo n8n</strong><p>Conecte gatilhos, condições SE/SENÃO, ações entre módulos e webhooks.</p></article>
+          <article><span class="oss-feature-icon">✳</span><strong>Assistente de IA</strong><p>Descreva o que precisa e revise a proposta antes de publicar.</p></article>
+        </div>
+
+        <section class="oss-empty-installed" id="oss-empty-installed">
+          <div class="oss-installed-header">
+            <div><span class="oss-kicker">PLATAFORMA DO CLUBE</span><h2>Operação esportiva</h2><p>Um único workspace conecta a rotina das equipes aos espaços e processos do clube.</p></div>
+          </div>
+          <div class="oss-installed-grid" id="oss-installed-home">
+            <article class="oss-module-card oss-module-card--club-demo">
+              <div class="oss-module-card__meta"><span class="oss-module-card__icon" aria-hidden="true">◉</span><span class="oss-module-card__category">Pacote integrado · 4 áreas</span></div>
+              <h2>Gestão do clube</h2>
+              <p>Cadastros, equipes, reserva de espaços e processos operam dentro da plataforma OSS.</p>
+              <div class="oss-module-card__actions"><button type="button" data-nav="pessoas">Abrir cadastro →</button><button type="button" data-nav="agenda">Ver agenda →</button></div>
+            </article>
+            <article class="oss-module-card oss-module-card--club-demo">
+              <div class="oss-module-card__meta"><span class="oss-module-card__icon" aria-hidden="true">⇢</span><span class="oss-module-card__category">Processos visuais</span></div>
+              <h2>Fluxos acompanhados</h2>
+              <p>Veja etapas, responsáveis e pendências desde a solicitação até a conclusão.</p>
+              <div class="oss-module-card__actions"><button type="button" data-nav="fluxos">Abrir processos →</button></div>
+            </article>
+          </div>
+        </section>
+
+        <!-- PAINEL TREINADOR -->
+        <div class="dashboard-grid dashboard-grid--coach" id="coach-grid">
+          <section class="panel team-panel" aria-labelledby="coach-team-heading">
+            <div class="panel-heading">
+              <div>
+                <h2 id="coach-team-heading">Minha equipe</h2>
+                <p>Equipe e comissão técnica ativa</p>
+              </div>
+              <span class="status status--active">Ativa</span>
+            </div>
+            <div class="team-lead">
+              <div>
+                <h3 id="my-team-name">Sub-15 de futsal</h3>
+                <p id="my-team-season">Temporada 2026</p>
+              </div>
+              <div class="team-count">
+                <strong id="my-team-athletes-count">3</strong>
+                <span>atletas</span>
+              </div>
+            </div>
+            <div class="team-footer">
+              <span>Comissão técnica</span>
+              <span id="my-team-staff">Marina Costa</span>
+            </div>
+            <button class="text-action" type="button" id="btn-go-to-team">
+              Ver equipe completa
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13"></path><path d="m13 6 6 6-6 6"></path></svg>
+            </button>
+          </section>
+
+          <section class="panel next-panel" aria-labelledby="next-training-heading">
+            <div class="panel-heading">
+              <div>
+                <h2 id="next-training-heading">Próximo treino</h2>
+                <p id="coach-next-training-label">Hoje, às 18h</p>
+              </div>
+              <span class="status status--scheduled">Confirmado</span>
+            </div>
+            <time class="event-time" id="coach-next-training-time">—</time>
+            <p class="event-title" id="coach-next-training-title">Treino da equipe Sub-15</p>
+            <dl class="detail-list">
+              <div><dt>Instalação</dt><dd id="coach-next-training-venue">Quadra A</dd></div>
+              <div><dt>Modalidade</dt><dd id="coach-next-training-modality">Futsal</dd></div>
+            </dl>
+            <button class="text-action event-details-action" id="coach-training-details" type="button" data-open-dialog="activity-drawer">Detalhes do treino</button>
+            <button class="button button--primary" type="button" data-attendance>Registrar presença</button>
+          </section>
+
+          <section class="panel match-panel" aria-labelledby="coach-next-match-heading">
+            <div class="panel-heading">
+              <div><h2 id="coach-next-match-heading">Próximo jogo</h2><p id="coach-next-match-date">Compromissos da equipe</p></div>
+              <span class="status status--busy" id="coach-next-match-status">Aguardando</span>
+            </div>
+            <p class="match-panel__opponent" id="coach-next-match-opponent">Carregando partidas…</p>
+            <p class="match-panel__meta" id="coach-next-match-meta"></p>
+            <button class="text-action" type="button" data-nav="competicoes">Ver competição</button>
+          </section>
+
+          <section class="panel pending-panel" aria-labelledby="coach-pending-heading">
+            <div class="panel-heading">
+              <div>
+                <h2 id="coach-pending-heading">Pendências</h2>
+                <p>Cadastros e solicitações</p>
+              </div>
+              <span class="count-label" id="coach-pending-count">1 pendente</span>
+            </div>
+            <ul class="task-list" id="coach-pending-list"><li class="empty-state">Carregando pendências…</li></ul>
+            <button class="text-action" type="button" data-nav="pessoas">
+              Ver fila de pessoas
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13"></path><path d="m13 6 6 6-6 6"></path></svg>
+            </button>
+          </section>
+
+          <details class="panel roster-panel" open>
+            <summary>
+              <span><strong>Atletas da equipe</strong><span id="roster-count-label">Carregados do banco de dados</span></span>
+              <span class="roster-toggle" aria-hidden="true"></span>
+            </summary>
+            <ul class="roster-list" id="coach-roster-preview">
+              <!-- Preenchido via API -->
+            </ul>
+          </details>
+        </div>
+
+        <!-- PAINEL COORDENAÇÃO & SECRETARIA -->
+        <div class="dashboard-grid dashboard-grid--coordination" id="coord-grid" hidden>
+          <section class="panel facility-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Agenda das instalações</h2>
+                <p>Próximos usos em cada instalação</p>
+              </div>
+              <button class="text-action" type="button" data-nav="agenda">Abrir agenda</button>
+            </div>
+            <div class="coord-schedule-wrap">
+              <table class="facility-table coord-schedule">
+                <thead><tr><th scope="col">Instalação</th><th scope="col">Próximo uso</th><th scope="col">Horário</th><th scope="col">Situação</th></tr></thead>
+                <tbody id="coord-facility-summary"><tr><td colspan="4">Carregando agenda…</td></tr></tbody>
+              </table>
+            </div>
+            <p class="coord-conflict-note" id="coord-conflict-note" aria-live="polite"></p>
+          </section>
+
+          <section class="panel facility-panel coord-requests-panel">
+            <div class="panel-heading">
+              <div><h2>Solicitações para conferir</h2><p>Pré-cadastros aguardando análise</p></div>
+              <button class="text-action" type="button" data-nav="pessoas">Ver fila</button>
+            </div>
+            <div id="secretariat-quick-queue"><!-- Lista dinâmica de pré-cadastros --></div>
+          </section>
+
+          <section class="panel teams-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Equipes do clube</h2>
+                <p>Modalidades ativas nesta temporada</p>
+              </div>
+              <span class="count-label" id="org-teams-count">4 equipes</span>
+            </div>
+            <ul class="team-list" id="coord-team-list">
+              <!-- Lista de equipes -->
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 2: TELA B — EQUIPE                    -->
+      <!-- ========================================== -->
+      <section class="main-view oss-view" id="view-catalogo-modulos" hidden aria-labelledby="module-catalog-heading">
+        <div class="page-heading">
+          <div class="page-heading__copy"><p class="oss-kicker">CATÁLOGO OSS · 64 MÓDULOS + PACOTES</p><h1 id="module-catalog-heading">Apps e pacotes para o trabalho real.</h1><p>Instale módulos individuais ou pacotes conectados com automações n8n prontas. Tudo vira seu e pode ser editado.</p></div>
+          <div class="oss-heading-actions">
+            <button class="button button--quiet" type="button" id="module-import-btn">Importar JSON</button>
+            <input id="module-import-file" type="file" accept=".json,application/json" hidden>
+            <button class="button button--primary" type="button" data-nav="criar-modulo">＋ Criar módulo</button>
+          </div>
+        </div>
+        <section class="oss-packs-section" aria-labelledby="oss-packs-heading">
+          <div class="oss-packs-head">
+            <div><span class="oss-kicker">PACOTES PRONTOS (MULTI-MÓDULOS + N8N)</span><h2 id="oss-packs-heading">Instale fluxos completos em 1 clique</h2></div>
+          </div>
+          <div class="oss-packs-grid" id="module-packs-grid" aria-live="polite"></div>
+        </section>
+        <search class="oss-catalog-toolbar"><label for="module-catalog-search">Buscar no catálogo</label><input id="module-catalog-search" type="search" placeholder="Ex.: férias, contas a pagar, frota, LGPD, chamados"></search>
+        <div class="oss-category-filters" id="module-category-filters" aria-label="Filtrar categorias"></div>
+        <div class="oss-catalog-grid" id="module-catalog-grid" aria-live="polite"><div class="oss-loading">Carregando módulos…</div></div>
+      </section>
+
+      <section class="main-view oss-view" id="view-criar-modulo" hidden aria-labelledby="module-builder-heading">
+        <div class="page-heading"><div class="page-heading__copy"><p class="oss-kicker">CRIADOR DE APPS</p><h1 id="module-builder-heading">Crie um módulo do seu jeito.</h1><p>Defina o que sua equipe acompanha, quais dados coleta e como as pessoas trabalham.</p></div>
+          <div class="oss-heading-actions">
+            <button class="button button--quiet" type="button" id="module-export-button" hidden>Exportar JSON</button>
+            <button class="button button--quiet" type="button" id="module-clone-button" hidden>Duplicar</button>
+            <button class="button button--quiet" type="button" id="module-archive-button" hidden>Arquivar</button>
+            <button class="button button--quiet" type="button" data-nav="catalogo-modulos">Ver catálogo</button>
+          </div>
+        </div>
+        <div class="oss-builder-layout">
+          <form id="module-builder-form" class="oss-builder-form">
+            <section class="oss-builder-card"><span class="oss-step">01 · IDENTIDADE</span><h2>O que este app organiza?</h2><label for="module-name">Nome do módulo</label><input id="module-name" name="name" maxlength="80" placeholder="Ex.: Controle de férias" required><label for="module-icon">Símbolo</label><input id="module-icon" name="icon" maxlength="12" value="▦" aria-label="Símbolo do módulo"><label for="module-description">Descrição</label><textarea id="module-description" name="description" rows="2" maxlength="280" placeholder="Explique em uma frase o que a equipe fará aqui."></textarea></section>
+            <section class="oss-builder-card"><div class="oss-builder-card__heading"><div><span class="oss-step">02 · ESTRUTURA</span><h2>Quais dados entram?</h2></div><button class="button button--quiet button--small" type="button" id="module-add-field">＋ Adicionar campo</button></div><div class="oss-field-list" id="module-field-list"></div><p class="oss-help">Suporta texto, texto longo, número, moeda (R$), data, seleção, status, sim/não, e-mail, telefone, URL, pessoa, anexo, código automático e fórmula.</p>
+              <div class="oss-builder-card__heading oss-builder-relations-heading"><div><span class="oss-step">SAÍDAS E CONEXÕES</span><h2>Compartilhe dados entre apps</h2></div><button class="button button--quiet button--small" type="button" id="module-add-relation">＋ Adicionar conexão</button></div><p class="oss-help">Marque os campos que este módulo oferece. Outros módulos podem conectar uma relação a uma saída e mostrar esse dado junto ao registro relacionado.</p><div class="oss-port-canvas" id="module-port-canvas"></div><div class="oss-relation-list" id="module-relation-list"></div>
+            </section>
+            <section class="oss-builder-card"><span class="oss-step">03 · ACESSO</span><h2>Quem pode fazer o quê?</h2><p>Administração sempre mantém controle total. Ajuste leitura, criação, edição, arquivamento e administração por papel.</p>
+              <div class="oss-row-scope-wrap"><label for="module-row-scope">Visibilidade dos registros</label><select id="module-row-scope" name="rowScope"><option value="all">Todos os registros do workspace (respeitando o papel)</option><option value="own_or_assigned">Apenas registros criados pela pessoa ou atribuídos a ela (Admin/Gestor veem todos)</option></select></div>
+              <div id="module-permission-matrix" class="oss-permission-matrix"></div>
+            </section>
+            <div class="oss-builder-actions"><button class="button button--quiet" type="button" data-nav="meu-espaco">Cancelar</button><button class="button button--quiet" type="button" id="module-publish-button" hidden>Publicar módulo</button><button class="button button--primary" type="submit">Salvar rascunho</button></div>
+          </form>
+          <aside class="oss-builder-preview"><div class="oss-preview-top"><span class="oss-kicker">PRÉVIA</span><span class="oss-preview-live"><i></i> Atualiza ao editar</span></div><h2 id="module-preview-name">Novo módulo</h2><p id="module-preview-description">Sua descrição aparece aqui.</p><div id="module-preview-fields"></div></aside>
+        </div>
+      </section>
+
+      <section class="main-view oss-view" id="view-modulo" hidden aria-labelledby="module-runtime-heading"><div id="module-runtime-content"></div></section>
+
+      <section class="main-view oss-view oss-automations-view" id="view-automacoes" hidden aria-labelledby="automations-heading">
+        <div class="page-heading">
+          <div class="page-heading__copy">
+            <p class="oss-kicker">ESTÚDIO DE AUTOMAÇÕES · ESTILO N8N</p>
+            <h1 id="automations-heading">Fluxos de informação entre módulos.</h1>
+            <p>Arraste ou adicione nós, conecte saídas (incluindo ramos Verdadeiro/Falso), teste com dados reais e acompanhe a execução passo a passo.</p>
+          </div>
+          <div class="oss-heading-actions">
+            <button class="button button--quiet" type="button" id="auto-btn-import">Importar JSON</button>
+            <input id="auto-import-file" type="file" accept=".json,application/json" hidden>
+            <button class="button button--primary" type="button" id="auto-btn-new">＋ Novo fluxo</button>
+          </div>
+        </div>
+
+        <div class="oss-n8n-bar">
+          <div class="oss-n8n-bar__left">
+            <label class="visually-hidden" for="auto-flow-select">Selecionar fluxo</label>
+            <select id="auto-flow-select" class="form-select"></select>
+            <button class="button button--quiet button--small" type="button" id="auto-btn-starters">Modelos prontos</button>
+            <button class="button button--quiet button--small" type="button" id="auto-btn-export">Exportar JSON</button>
+            <button class="button button--quiet button--small" type="button" id="auto-btn-delete">Excluir</button>
+          </div>
+          <div class="oss-n8n-bar__right">
+            <label class="oss-switch"><input type="checkbox" id="auto-flow-active"><span>Ativo</span></label>
+            <button class="button button--quiet" type="button" id="auto-btn-test">▶ Testar fluxo</button>
+            <button class="button button--primary" type="button" id="auto-btn-save">Salvar fluxo</button>
+          </div>
+        </div>
+
+        <div class="oss-n8n-meta">
+          <label class="visually-hidden" for="auto-flow-name">Nome do fluxo</label>
+          <input id="auto-flow-name" type="text" maxlength="120" placeholder="Nome do fluxo (ex.: Compra aprovada → Conta a pagar)">
+          <label class="visually-hidden" for="auto-flow-desc">Descrição</label>
+          <input id="auto-flow-desc" type="text" maxlength="500" placeholder="Descrição breve do que este fluxo automatiza">
+        </div>
+
+        <div class="oss-n8n-starters" id="auto-starters-drawer" hidden></div>
+        <div id="auto-status-banner" class="oss-runtime-status" aria-live="polite"></div>
+
+        <div class="oss-n8n-workbench">
+          <aside class="oss-n8n-palette" aria-label="Paleta de nós">
+            <div class="oss-n8n-pane-head"><strong>Nós disponíveis</strong><span>Clique para adicionar</span></div>
+            <div id="auto-node-palette" class="oss-n8n-palette-list"></div>
+          </aside>
+
+          <section class="oss-n8n-stage-wrap" aria-label="Canvas visual do fluxo">
+            <div class="oss-n8n-canvas-tools">
+              <div class="oss-n8n-canvas-tools__left">
+                <button type="button" class="oss-n8n-tool-btn" id="auto-toggle-palette" title="Mostrar/ocultar paleta de nós">◧ Nós</button>
+                <button type="button" class="oss-n8n-tool-btn" id="auto-toggle-inspector" title="Mostrar/ocultar inspetor">◨ Inspetor</button>
+                <span id="auto-wire-hint">Arraste o nó pelo cabeçalho · Conecte dos pinos (→) até (●)</span>
+              </div>
+              <div class="oss-n8n-zoom-controls">
+                <button type="button" id="auto-layout-btn" title="Organizar nós automaticamente">Auto-organizar</button>
+                <button type="button" id="auto-zoom-out" aria-label="Diminuir zoom">−</button>
+                <span id="auto-zoom-label">100%</span>
+                <button type="button" id="auto-zoom-in" aria-label="Aumentar zoom">+</button>
+                <button type="button" id="auto-zoom-reset">Centralizar</button>
+                <button type="button" id="auto-fullscreen-btn" title="Expandir canvas em tela cheia">⛶ Expandir</button>
+              </div>
+            </div>
+            <div class="oss-n8n-viewport" id="auto-canvas-viewport" tabindex="0" role="region" aria-label="Área do fluxograma">
+              <div class="oss-n8n-stage" id="auto-canvas-stage">
+                <svg class="oss-n8n-edges" id="auto-canvas-edges" aria-hidden="true"></svg>
+                <div class="oss-n8n-nodes" id="auto-canvas-nodes"></div>
+              </div>
+            </div>
+          </section>
+
+          <aside class="oss-n8n-inspector" aria-label="Inspetor e execuções">
+            <div class="oss-n8n-inspector-tabs" role="tablist">
+              <button type="button" role="tab" class="is-active" data-auto-tab="config" aria-selected="true">Configurar nó</button>
+              <button type="button" role="tab" data-auto-tab="runs" aria-selected="false">Execuções (<span id="auto-runs-count">0</span>)</button>
+            </div>
+            <div id="auto-inspector-config" class="oss-n8n-inspector-body"></div>
+            <div id="auto-inspector-runs" class="oss-n8n-inspector-body" hidden></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="main-view oss-view" id="view-assistente" hidden aria-labelledby="assistant-heading">
+        <div class="page-heading">
+          <div class="page-heading__copy">
+            <p class="oss-kicker">ASSISTENTE OSS · MULTI-IA</p>
+            <h1 id="assistant-heading">Construa conversando.</h1>
+            <p>Conecte sua própria conta/API (ChatGPT/OpenAI, DeepSeek, Gemini, Claude, Groq, OpenRouter ou Ollama local grátis) e peça módulos ou fluxos n8n.</p>
+          </div>
+          <div class="oss-heading-actions">
+            <span class="oss-ai-status" id="assistant-status">Conexão necessária</span>
+            <button class="button button--quiet" type="button" id="assistant-toggle-config">⚙ Conectar / Trocar IA</button>
+          </div>
+        </div>
+
+        <section id="assistant-config-panel" class="oss-ai-config-panel" hidden aria-label="Configurar provedor de IA">
+          <div class="oss-ai-config-head">
+            <div>
+              <strong>Escolha ou conecte um servidor de IA</strong>
+              <p>Clique em um provedor abaixo para preencher automaticamente. Para Ollama/LM Studio locais, não precisa de API Key.</p>
+            </div>
+            <button type="button" class="button button--quiet button--small" id="assistant-close-config">Fechar</button>
+          </div>
+          <div id="assistant-provider-grid" class="oss-ai-provider-grid"></div>
+          <form id="assistant-provider-form" class="oss-ai-provider-form" hidden></form>
+          <div id="assistant-config-feedback" class="oss-runtime-status" aria-live="polite"></div>
+        </section>
+
+        <div class="oss-assistant-shell"><div class="oss-assistant-intro"><span class="oss-assistant-spark">✳</span><div><strong>O que vamos montar?</strong><p>Descreva um app, processo ou fluxo entre módulos e receba uma proposta revisável.</p></div></div><div class="oss-assistant-messages" id="assistant-messages" aria-live="polite"><article class="oss-assistant-message oss-assistant-message--system">Conecte qualquer IA acima (ChatGPT/OpenAI, DeepSeek, Gemini, Claude, Groq, OpenRouter ou Ollama local) para começar. O Assistente oferece sugestões e nunca altera registros sozinho.</article></div><form id="assistant-chat-form" class="oss-assistant-compose"><label class="visually-hidden" for="assistant-message">Descreva o que deseja criar</label><textarea id="assistant-message" rows="2" placeholder="Ex.: crie um fluxo n8n quando um reembolso for aprovado para criar uma conta a pagar"></textarea><button class="button button--primary" type="submit">Enviar <span aria-hidden="true">↑</span></button></form><div class="oss-assistant-footnote" id="assistant-connection-note">Clique em "Conectar / Trocar IA" para escolher um provedor.</div></div>
+      </section>
+
+      <section class="main-view oss-view" id="view-publicacao" hidden aria-labelledby="publish-heading">
+        <div class="page-heading"><div class="page-heading__copy"><p class="oss-kicker">LEVE SUA INSTALAÇÃO</p><h1 id="publish-heading">Publique onde sua equipe trabalha.</h1><p>O OSS é open source. Rode localmente, hospede no seu servidor ou use uma plataforma que aceite containers.</p></div></div>
+        <div class="oss-deploy-grid"><article class="oss-deploy-card"><span class="oss-deploy-number">01</span><span class="oss-deploy-icon">⌘</span><h2>Executar localmente</h2><p>Baixe o código, instale o Node.js e inicie o OSS na sua máquina.</p><code>npm install && npm start</code><a href="https://nodejs.org/" target="_blank" rel="noreferrer">Instalar Node.js ↗</a></article><article class="oss-deploy-card oss-deploy-card--featured"><span class="oss-deploy-number">02</span><span class="oss-deploy-icon">▣</span><h2>Docker e servidor próprio</h2><p>Suba a plataforma em um servidor com dados persistentes e controle total.</p><code>docker compose up -d</code><span class="oss-deploy-label">Recomendado para produção</span></article><article class="oss-deploy-card"><span class="oss-deploy-number">03</span><span class="oss-deploy-icon">↗</span><h2>Hospedagem gerenciada</h2><p>Use qualquer plataforma que execute containers e monte volumes persistentes.</p><span class="oss-deploy-label">Sem integração de um clique nesta versão</span></article></div>
+        <aside class="oss-deploy-note"><strong>Antes de publicar:</strong> configure HTTPS, armazenamento persistente, backup, atualização e segredos no ambiente do servidor. Os registros e documentos devem permanecer fora da imagem do container.</aside>
+      </section>
+
+      <section class="main-view" id="view-equipe" hidden>
+        <div class="team-header-card">
+          <div class="team-header-card__info">
+            <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-2xs);">
+              <span class="tenant-pill" id="team-tenant-badge">Clube Atlético Central</span>
+              <span class="status status--active">Temporada 2026</span>
+            </div>
+            <h2 id="team-view-name">Sub-15 de Futsal</h2>
+            <div class="team-header-card__meta">
+              <span id="team-view-category">Categoria: Sub-15</span>
+              <span>•</span>
+              <span id="team-view-modality">Modalidade: Futsal</span>
+              <span>•</span>
+              <span id="team-view-gender">Gênero: Misto</span>
+            </div>
+          </div>
+          <div class="team-header-card__actions">
+            <button class="button button--quiet" type="button" id="btn-team-request-match">Solicitar jogo</button>
+            <button class="button button--primary" type="button" id="btn-team-add-athlete">Registrar atleta</button>
+          </div>
+        </div>
+
+        <nav class="subnav" aria-label="Abas da equipe">
+          <button class="subnav__tab subnav__tab--active" type="button" data-team-tab="athletes" aria-selected="true">Atletas vinculados</button>
+          <button class="subnav__tab" type="button" data-team-tab="staff" aria-selected="false">Comissão técnica</button>
+          <button class="subnav__tab" type="button" data-team-tab="schedule" aria-selected="false">Próximos treinos</button>
+        </nav>
+
+        <!-- ABA ATLETAS -->
+        <div class="team-tab-content" id="tab-athletes">
+          <div class="data-table-wrapper">
+            <table class="data-table" id="athletes-roster-table">
+              <thead>
+                <tr>
+                  <th scope="col">Atleta</th>
+                  <th scope="col">Posição</th>
+                  <th scope="col">Responsável</th>
+                  <th scope="col">Vínculo desde</th>
+                  <th scope="col">Biometria</th>
+                  <th scope="col">TeleZaga</th>
+                  <th scope="col">Atestado Médico</th>
+                  <th scope="col">Situação</th>
+                </tr>
+              </thead>
+              <tbody id="athletes-roster-tbody">
+                <!-- Preenchido via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ABA COMISSÃO TÉCNICA -->
+        <div class="team-tab-content" id="tab-staff" hidden>
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Profissional</th>
+                  <th scope="col">Função</th>
+                  <th scope="col">Registro Profissional (CREF)</th>
+                  <th scope="col">Contato</th>
+                  <th scope="col">Vínculo</th>
+                </tr>
+              </thead>
+              <tbody id="staff-roster-tbody">
+                <!-- Preenchido via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ABA PRÓXIMOS TREINOS -->
+        <div class="team-tab-content" id="tab-schedule" hidden>
+          <div class="panel" style="max-width: 600px;">
+            <div class="panel-heading">
+              <div>
+                <h2>Treino confirmado</h2>
+                <p>Hoje às 18:00 — Quadra A</p>
+              </div>
+              <span class="status status--scheduled">Agendado</span>
+            </div>
+            <p style="margin-top: var(--space-sm); color: var(--color-ink-2); font-size: 0.9rem;">
+              Treino técnico e tático com foco em saída de pressão e finalizações.
+            </p>
+            <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm);">
+              <button class="button button--primary" type="button" data-attendance>Fazer chamada de presença</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 3: PESSOAS & FILA DA SECRETARIA       -->
+      <!-- ========================================== -->
+      <section class="main-view" id="view-pessoas" hidden>
+        <div class="page-heading">
+          <div class="page-heading__copy">
+            <h1>Pessoas e Cadastros</h1>
+            <p>Gestão integrada do corpo esportivo: atletas, responsáveis e validação de filiação.</p>
+          </div>
+          <button class="button button--primary" type="button" id="btn-pessoas-prereg">Registrar atleta</button>
+        </div>
+
+        <!-- FILA DE PRÉ-CADASTRO (Aprovação da Secretaria) -->
+        <div class="panel" style="margin-bottom: var(--space-xl);" id="prereg-section">
+          <div class="panel-heading">
+            <div>
+              <h2>Fila de Pré-cadastros</h2>
+              <p>Cadastros iniciados por treinadores aguardando conferência documental e aprovação</p>
+            </div>
+            <span class="count-label" id="prereg-count-badge">Carregando...</span>
+          </div>
+
+          <div class="prereg-grid" id="prereg-cards-container"><!-- Fila ativa preenchida via API --></div>
+        </div>
+
+        <details class="panel prereg-history" id="prereg-history">
+          <summary><strong>Histórico de cadastros</strong><span id="prereg-history-count" class="count-label">0 registros</span></summary>
+          <div class="prereg-grid" id="prereg-history-container"></div>
+        </details>
+
+        <!-- LISTA GERAL DE ATLETAS -->
+        <div class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Atletas cadastrados no clube</h2>
+              <p>Relação oficial de atletas vinculados, contatos de responsáveis e situação médica</p>
+            </div>
+          </div>
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Equipes ativas</th>
+                  <th scope="col">Responsável</th>
+                  <th scope="col">Telefone do responsável</th>
+                  <th scope="col">Biometria</th>
+                  <th scope="col">TeleZaga</th>
+                </tr>
+              </thead>
+              <tbody id="all-athletes-tbody">
+                <!-- Preenchido via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 4: TELA C — AGENDA DE INSTALAÇÕES     -->
+      <!-- ========================================== -->
+      <section class="main-view" id="view-agenda" hidden>
+        <div class="page-heading">
+          <div class="page-heading__copy">
+            <h1>Agenda das instalações</h1>
+            <p>Consulte a ocupação dos espaços esportivos, identifique horários livres e reserve com validação automática de conflitos.</p>
+          </div>
+          <div class="agenda-actions">
+            <div class="agenda-date-control">
+              <button class="icon-button" type="button" data-agenda-shift="-1" aria-label="Dia anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+              <label class="visually-hidden" for="agenda-date-picker">Data da agenda</label>
+              <input type="date" id="agenda-date-picker" class="form-input">
+              <button class="icon-button" type="button" data-agenda-shift="1" aria-label="Próximo dia"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+            </div>
+            <button class="button button--primary" type="button" id="btn-open-new-reservation">+ Nova reserva</button>
+          </div>
+        </div>
+
+        <!-- ALERTA DE CONFLITO ATIVO (CASO DETECTADO) -->
+        <div id="agenda-conflict-banner" class="panel" style="border-left: 4px solid var(--color-alert); display: none; margin-bottom: var(--space-md); background: var(--color-alert-soft);">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-md);">
+            <div>
+              <strong style="color: var(--color-alert-ink); font-size: 0.95rem;">Conflito de Horário Detectado</strong>
+              <p id="agenda-conflict-text" style="color: var(--color-ink-2); font-size: 0.85rem; margin-top: 4px;"></p>
+              <div id="agenda-alternatives-container" style="margin-top: var(--space-sm); display: flex; gap: var(--space-xs); flex-wrap: wrap;"></div>
+            </div>
+            <button type="button" class="dialog__close" onclick="document.getElementById('agenda-conflict-banner').style.display='none'" style="font-size: 0.75rem;">Fechar</button>
+          </div>
+        </div>
+
+        <!-- GRADE DAS INSTALAÇÕES -->
+        <div class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2 id="agenda-day-title">Reservas por quadra</h2>
+              <p id="agenda-date-label">Quarta-feira, 18 de novembro de 2026</p>
+            </div>
+            <span class="count-label" id="agenda-reservations-count">Carregando...</span>
+          </div>
+
+          <div class="schedule-legend" aria-label="Legenda da agenda">
+            <span><i class="schedule-legend__swatch schedule-legend__swatch--training" aria-hidden="true"></i>Treino</span>
+            <span><i class="schedule-legend__swatch schedule-legend__swatch--match" aria-hidden="true"></i>Jogo</span>
+            <span><i class="schedule-legend__swatch schedule-legend__swatch--other" aria-hidden="true"></i>Outras atividades</span>
+          </div>
+          <div class="schedule-grid-scroll" id="agenda-schedule-grid" aria-live="polite" aria-describedby="agenda-schedule-note">
+            <p class="schedule-grid-loading">Carregando reservas…</p>
+          </div>
+          <p class="schedule-grid-note" id="agenda-schedule-note">A grade mostra apenas reservas confirmadas. A disponibilidade é validada ao criar uma reserva.</p>
+
+          <details class="agenda-details">
+            <summary>Ver lista detalhada das instalações</summary>
+            <div class="data-table-wrapper">
+            <table class="data-table" id="agenda-venues-table">
+              <thead>
+                <tr>
+                  <th scope="col">Instalação</th>
+                  <th scope="col">Modalidades</th>
+                  <th scope="col">Capacidade</th>
+                  <th scope="col">Reservas do dia</th>
+                  <th scope="col">Situação hoje</th>
+                  <th scope="col">Ação</th>
+                </tr>
+              </thead>
+              <tbody id="agenda-venues-tbody">
+                <!-- Preenchido via API -->
+              </tbody>
+            </table>
+          </div>
+          </details>
+        </div>
+
+        <!-- LISTA CRONOLÓGICA DAS ATIVIDADES DO DIA -->
+        <div class="panel" style="margin-top: var(--space-lg);">
+          <div class="panel-heading">
+            <div>
+              <h2>Atividades e Jogos Confirmados</h2>
+              <p>Histórico completo com preservação de cancelamentos para auditoria</p>
+            </div>
+          </div>
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Horário</th>
+                  <th scope="col">Instalação</th>
+                  <th scope="col">Atividade</th>
+                  <th scope="col">Equipe</th>
+                  <th scope="col">Responsável</th>
+                  <th scope="col">Situação</th>
+                  <th scope="col">Opções</th>
+                </tr>
+              </thead>
+              <tbody id="agenda-timeline-tbody">
+                <!-- Preenchido via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 5: TELA E — FLUXOS DE PROCESSO        -->
+      <!-- ========================================== -->
+      <section class="main-view" id="view-fluxos" hidden>
+        <div class="page-heading workflow-page-heading">
+          <div class="page-heading__copy">
+            <h1>Fluxos de processo</h1>
+            <p>Acompanhe os fluxos da equipe, com responsáveis, aprovações, prazos e histórico.</p>
+          </div>
+        </div>
+        <div class="workflow-container">
+          <section class="workflow-empty-state panel" id="wf-empty-state" hidden aria-labelledby="wf-empty-title">
+            <div>
+              <h2 id="wf-empty-title">Escolha um processo para acompanhar</h2>
+              <p>Veja as etapas e responsabilidades antes de iniciar um novo processo.</p>
+            </div>
+            <div class="workflow-template-options" id="workflow-template-options" aria-live="polite"></div>
+          </section>
+
+          <section class="workflow-template-preview panel" id="wf-template-preview" hidden aria-labelledby="wf-preview-title">
+            <div class="workflow-preview-heading">
+              <div>
+                <h2 id="wf-preview-title">Cadastrar atleta</h2>
+                <p id="wf-preview-description"></p>
+              </div>
+              <button class="button button--quiet" type="button" id="btn-back-to-workflows">Ver processos</button>
+            </div>
+            <ol class="workflow-steps workflow-steps--preview" id="wf-preview-steps" aria-label="Etapas do modelo"></ol>
+            <div class="workflow-preview-footer">
+              <p>Selecione uma etapa para ver responsabilidades, decisões e histórico do processo.</p>
+              <button class="button button--primary" type="button" id="btn-start-template">Iniciar cadastro</button>
+            </div>
+          </section>
+
+          <div class="workflow-header-card" id="workflow-instance-header">
+            <div class="workflow-header-title">
+              <span class="status status--scheduled" id="wf-instance-status">Em andamento</span>
+              <h2 id="wf-instance-title" style="margin-top: 4px;">Amistoso contra Atlético do Vale — Sub-15</h2>
+              <p style="font-size: 0.82rem; color: var(--color-muted);" id="wf-instance-meta">Processo de Agendar Jogo · Iniciado por Marina Costa</p>
+            </div>
+
+            <div style="display: flex; gap: var(--space-sm); align-items: center; flex-wrap: wrap;">
+              <select id="wf-instance-select" class="form-select" style="padding: 4px 10px; font-size: 0.82rem; width: auto;">
+                <!-- Preenchido com instâncias ativas -->
+              </select>
+
+              <div class="workflow-view-toggle">
+                <button type="button" class="active" id="btn-wf-view-graph" aria-pressed="true">Fluxo</button>
+                <button type="button" id="btn-wf-view-list" aria-pressed="false">Lista</button>
+              </div>
+
+              <button class="button button--quiet" type="button" id="btn-open-start-wf">Novo processo</button>
+            </div>
+          </div>
+
+          <!-- MODO GRAFO (VISUAL INTERATIVO DE NÓS) -->
+          <div class="panel" id="wf-graph-wrapper">
+            <div class="panel-heading">
+              <div>
+                <h2>Etapas do processo</h2>
+                <p>Selecione uma etapa para ver as instruções e a próxima ação.</p>
+              </div>
+              <span class="count-label" id="wf-progress-label">Etapas do processo</span>
+            </div>
+
+            <div class="workflow-graph-canvas" id="wf-graph-canvas">
+              <!-- Nós e setas gerados dinamicamente via API -->
+            </div>
+          </div>
+
+          <!-- MODO LISTA (ACESSIBILIDADE & TELAS MENORES) -->
+          <div class="panel" id="wf-list-wrapper" hidden>
+            <div class="panel-heading">
+              <div>
+                <h2>Etapas do Processo em Lista Sequencial</h2>
+                <p>Acompanhe e execute cada etapa diretamente</p>
+              </div>
+            </div>
+            <div class="workflow-list-view" id="wf-list-container">
+              <!-- Lista de itens do fluxo gerada dinamicamente -->
+            </div>
+          </div>
+
+          <!-- HISTÓRICO E TRILHA DE EVENTOS AUDITÁVEIS -->
+          <div class="panel" id="wf-history-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Histórico de Ações e Auditoria</h2>
+                <p>Registro cronológico preservado com autoria e horários</p>
+              </div>
+            </div>
+            <div class="workflow-timeline" id="wf-timeline-container">
+              <!-- Linha do tempo gerada via API -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-view admin-view" id="view-administracao-contas" hidden aria-labelledby="accounts-heading">
+        <div class="page-heading">
+          <div class="page-heading__copy">
+            <h1 id="accounts-heading">Contas e acessos</h1>
+            <p>Gerencie quem pode acessar este workspace e quais tarefas cada pessoa pode executar.</p>
+          </div>
+        </div>
+        <div class="admin-layout">
+          <section class="panel admin-form-panel" aria-labelledby="account-form-heading">
+            <div class="panel-heading"><h2 id="account-form-heading">Adicionar pessoa</h2><p>Crie um acesso para alguém da equipe.</p></div>
+            <form id="account-form">
+              <div class="form-group"><label for="account-full-name">Nome completo</label><input class="form-input" id="account-full-name" name="fullName" maxlength="120" autocomplete="name" required></div>
+              <div class="form-group"><label for="account-email">E-mail</label><input class="form-input" id="account-email" name="email" type="email" maxlength="254" autocomplete="email" required></div>
+              <div class="form-group"><label for="account-role">Nível de acesso</label><select class="form-select" id="account-role" name="role" required><option value="coach">Editor</option><option value="secretariat">Operações</option><option value="coordination">Gestor</option><option value="director">Leitor</option><option value="admin">Administrador</option></select></div>
+              <div class="form-group"><label for="account-password">Senha inicial</label><input class="form-input" id="account-password" name="password" type="password" minlength="12" maxlength="128" autocomplete="new-password" required><small class="form-help">Use pelo menos 12 caracteres. Compartilhe a senha inicial com segurança.</small></div>
+              <p class="form-feedback" id="account-form-feedback" aria-live="polite"></p>
+              <button class="button button--primary" type="submit">Criar acesso</button>
+            </form>
+          </section>
+          <section class="panel accounts-panel" aria-labelledby="accounts-list-heading">
+            <div class="panel-heading"><div><h2 id="accounts-list-heading">Pessoas com acesso</h2><p>As alterações valem para este workspace.</p></div></div>
+            <p class="admin-empty" id="accounts-empty" hidden>Nenhuma conta encontrada.</p>
+            <div class="table-wrap"><table class="data-table accounts-table"><thead><tr><th scope="col">Pessoa</th><th scope="col">Papel</th><th scope="col">Acesso</th><th scope="col">Ação</th></tr></thead><tbody id="accounts-table-body"></tbody></table></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="main-view admin-view" id="view-administracao-processos" hidden aria-labelledby="workflow-admin-heading">
+        <div class="page-heading">
+          <div class="page-heading__copy">
+            <h1 id="workflow-admin-heading">Gestor de processos</h1>
+            <p>Monte etapas, responsáveis, prazos e regras simples. As versões publicadas preservam processos em andamento.</p>
+          </div>
+          <div class="heading-actions">
+            <button class="button button--quiet" id="btn-workflow-import" type="button">Importar JSON</button>
+            <input id="workflow-import-file" type="file" accept="application/json,.json" hidden>
+            <button class="button button--primary" id="btn-workflow-new" type="button">Criar processo</button>
+          </div>
+        </div>
+        <div class="workflow-admin-layout is-editor-closed">
+          <section class="panel workflow-admin-list-panel" aria-labelledby="workflow-admin-list-heading">
+            <div class="panel-heading"><div><h2 id="workflow-admin-list-heading">Modelos</h2><p>Rascunhos podem ser revisados antes de publicar.</p></div></div>
+            <div class="workflow-admin-list" id="workflow-admin-list" aria-live="polite"></div>
+            <p class="admin-empty" id="workflow-admin-empty" hidden>Nenhum processo cadastrado ainda.</p>
+          </section>
+          <section class="panel workflow-editor-panel" id="workflow-editor-panel" hidden aria-labelledby="workflow-editor-heading">
+            <div class="panel-heading"><div><h2 id="workflow-editor-heading">Novo processo</h2><p>Use uma lista simples de etapas que sua equipe possa seguir.</p></div><button class="button button--quiet" type="button" id="btn-workflow-editor-close">Fechar</button></div>
+            <form id="workflow-editor-form">
+              <input id="workflow-editor-id" type="hidden">
+              <div class="form-group"><label for="workflow-editor-name">Nome do processo</label><input class="form-input" id="workflow-editor-name" maxlength="120" required></div>
+              <div class="form-group"><label for="workflow-editor-description">Descrição</label><textarea class="form-textarea" id="workflow-editor-description" maxlength="500" rows="3"></textarea></div>
+              <div class="form-group"><label for="workflow-editor-module">Módulo relacionado</label><select class="form-select" id="workflow-editor-module"><option value="">Processo geral</option></select></div>
+              <div class="form-group"><label for="workflow-editor-record-type">Tipo de registro (opcional)</label><input class="form-input" id="workflow-editor-record-type" maxlength="80" placeholder="Ex.: solicitação de compra"></div>
+              <div class="form-group"><label for="workflow-editor-due-days">Prazo padrão em dias</label><input class="form-input" id="workflow-editor-due-days" type="number" min="0" max="365" placeholder="Sem prazo padrão"></div>
+              <div class="form-group form-group--full"><label for="workflow-editor-rules">Regras condicionais simples <span class="form-help">Uma por linha: campo = valor, campo != valor, campo contém valor, campo vazio ou campo preenchido.</span></label><textarea class="form-textarea" id="workflow-editor-rules" rows="3" placeholder="status = aprovado"></textarea></div>
+              <div class="step-editor-heading"><div><h3>Fluxograma</h3><p>Monte o caminho do processo e conecte as etapas pelos pontos de saída.</p></div><button class="button button--quiet" type="button" id="btn-workflow-add-step">＋ Adicionar nó</button></div>
+              <div class="workflow-canvas-shell"><div class="workflow-canvas-toolbar"><label>De <select class="form-select" id="workflow-connect-from"><option value="">Escolha um nó</option></select></label><span aria-hidden="true">→</span><label>Para <select class="form-select" id="workflow-connect-to"><option value="">Escolha um nó</option></select></label><button class="button button--quiet button--small" type="button" id="workflow-connect-button">Conectar</button></div><div class="workflow-canvas" id="workflow-canvas" aria-label="Fluxograma editável"></div><p class="oss-help">Um nó pode liberar vários caminhos; os nós que recebem mais de uma conexão aguardam todas as etapas anteriores.</p></div>
+              <details class="workflow-node-details"><summary>Editar instruções e responsáveis dos nós</summary>
+              <div class="workflow-step-editor" id="workflow-step-editor"></div>
+              </details>
+              <div class="workflow-editor-preview" id="workflow-editor-preview" hidden></div>
+              <p class="form-feedback" id="workflow-editor-feedback" aria-live="polite"></p>
+              <div class="form-actions workflow-editor-actions">
+                <button class="button button--quiet" type="button" id="btn-workflow-preview">Pré-visualizar</button>
+                <button class="button button--quiet" type="button" id="btn-workflow-save">Salvar rascunho</button>
+                <button class="button button--primary" type="button" id="btn-workflow-publish">Publicar versão</button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 6: TELA D — COMPETIÇÕES E DOCUMENTOS  -->
+      <!-- ========================================== -->
+      <section class="main-view" id="view-competicoes" hidden>
+        <div class="team-header-card">
+          <div class="team-header-card__info">
+            <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-2xs);">
+              <span class="tenant-pill" id="comp-tenant-badge">Clube Atlético Central</span>
+              <span class="status status--active" id="comp-status-badge">Temporada 2026 · Ativa</span>
+            </div>
+            <h2 id="comp-title">Campeonato Metropolitano de Futsal 2026</h2>
+            <div class="team-header-card__meta">
+              <span id="comp-location">Local: Belo Horizonte</span>
+              <span>•</span>
+              <span id="comp-period">01/11/2026 até 15/12/2026</span>
+              <span>•</span>
+              <span id="comp-teams-summary">Equipe vinculada: Sub-15 de Futsal</span>
+            </div>
+          </div>
+          <div class="team-header-card__actions">
+            <button class="button button--primary" type="button" id="btn-export-dossier">
+              Ver dossiê e pendências
+            </button>
+          </div>
+        </div>
+
+        <!-- ALERTA DE PENDÊNCIAS DOCUMENTAIS -->
+        <div id="comp-pending-alert-box" class="panel" style="border-left: 4px solid var(--color-warning); background: var(--color-warning-soft); margin-bottom: var(--space-md); display: none;">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-md);">
+            <div>
+              <strong style="color: var(--color-warning-ink); font-size: 0.95rem;">Atenção: Documentação Pendente</strong>
+              <div id="comp-pending-list-container" style="margin-top: 4px; font-size: 0.85rem; color: var(--color-ink-2);"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABELAS DE JOGOS E ANEXOS -->
+        <div class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Partidas e Resultados</h2>
+              <p>Tabela de jogos disputados e agendados no torneio</p>
+            </div>
+            <span class="count-label" id="comp-matches-count">2 jogos</span>
+          </div>
+
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Data e Horário</th>
+                  <th scope="col">Mando</th>
+                  <th scope="col">Adversário</th>
+                  <th scope="col">Placar / Situação</th>
+                  <th scope="col">Súmula</th>
+                  <th scope="col">Ação</th>
+                </tr>
+              </thead>
+              <tbody id="comp-matches-tbody">
+                <!-- Preenchido via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top: var(--space-lg);">
+          <div class="panel-heading">
+            <div>
+              <h2>Documentos Anexados à Competição</h2>
+              <p>Súmulas oficiais, relação de seguro e comprovantes arquivados com acesso seguro</p>
+            </div>
+          </div>
+
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Arquivo</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Tamanho</th>
+                  <th scope="col">Enviado por</th>
+                  <th scope="col">Data de Envio</th>
+                  <th scope="col">Acesso</th>
+                </tr>
+              </thead>
+              <tbody id="comp-attachments-tbody">
+                <!-- Preenchido via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 6.5: VIAGENS, DIÁRIAS E DESPESAS      -->
+      <!-- ========================================== -->
+      <section class="main-view" id="view-viagens" hidden>
+        <div class="team-header-card">
+          <div class="team-header-card__info">
+            <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-2xs);">
+              <span class="tenant-pill">Deslocamentos & Competições Fora</span>
+              <span class="status status--active">Gestão Financeira e Operacional</span>
+            </div>
+            <h2>Viagens e prestação de contas</h2>
+            <div class="team-header-card__meta">
+              <span>Participantes e despesas vinculados à viagem</span>
+              <span>•</span>
+              <span>Comprovantes segregados por fonte (CBC vs Recurso Próprio)</span>
+              <span>•</span>
+              <span>Conferência administrativa auditável</span>
+            </div>
+          </div>
+          <div class="team-header-card__actions">
+            <button class="button button--primary" type="button" id="btn-open-create-trip">+ Nova Viagem</button>
+          </div>
+        </div>
+
+        <!-- INDICADORES CONSOLIDADOS DE VIAGENS -->
+        <div class="kpi-grid trip-kpi-grid" style="margin-bottom: var(--space-lg);">
+          <div class="panel">
+            <p class="meta-label">Viagens Programadas</p>
+            <p class="kpi-value" id="kpi-trips-count">1</p>
+            <p class="kpi-sub">Fase Regional e Amistosos</p>
+          </div>
+          <div class="panel">
+            <p class="meta-label">Diárias Calculadas</p>
+            <p class="kpi-value" id="kpi-trips-allowances" style="color: var(--color-ink);">R$ 720,00</p>
+            <p class="kpi-sub">Profissionais: R$ 120/dia • Atletas: R$ 60/dia</p>
+          </div>
+          <div class="panel">
+            <p class="meta-label">Despesas Aprovadas</p>
+            <p class="kpi-value" id="kpi-trips-approved-expenses" style="color: var(--color-success);">R$ 480,00</p>
+            <p class="kpi-sub">Recursos CBC e Próprio conferidos</p>
+          </div>
+          <div class="panel">
+            <p class="meta-label">Comprovantes a Conferir</p>
+            <p class="kpi-value" id="kpi-trips-pending-expenses" style="color: var(--color-warning);">1</p>
+            <p class="kpi-sub">Aguardando análise administrativa</p>
+          </div>
+        </div>
+
+        <!-- TABELA DE VIAGENS -->
+        <div class="data-table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Título da Viagem</th>
+                <th scope="col">Destino</th>
+                <th scope="col">Período</th>
+                <th scope="col">Equipe</th>
+                <th scope="col">Transporte</th>
+                <th scope="col">Delegação</th>
+                <th scope="col">Prestação de Contas</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="trips-table-tbody">
+              <!-- Preenchido via API -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 7: TELA F — PROJETOS E RELATÓRIOS CBC -->
+      <!-- ========================================== -->
+      <section class="main-view" id="view-projetos" hidden>
+        <div class="team-header-card">
+          <div class="team-header-card__info">
+            <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-2xs);">
+              <span class="tenant-pill" id="proj-tenant-badge">Clube Atlético Central</span>
+              <span class="status status--active" id="proj-instrument-badge">Instrumento: CBC</span>
+            </div>
+            <h2 id="proj-name">Programa de Formação de Atletas CBC 2026</h2>
+            <div class="team-header-card__meta">
+              <span id="proj-term">Termo de Execução nº 42/2026</span>
+              <span>•</span>
+              <span id="proj-period">Vigência: 01/01/2026 a 31/12/2026</span>
+              <span>•</span>
+              <span id="proj-budget">Orçamento Alocado: R$ 250.000,00</span>
+            </div>
+          </div>
+          <div class="team-header-card__actions" style="display: flex; gap: var(--space-xs); flex-wrap: wrap;">
+            <button class="button button--primary" type="button" id="btn-export-cbc-report">
+              Exportar relatório operacional (JSON)
+            </button>
+          </div>
+        </div>
+
+        <p class="report-scope-note">Este relatório organiza os registros do período selecionado. Confira o instrumento e os modelos oficiais antes de qualquer submissão ao CBC.</p>
+
+        <section class="panel compliance-panel" aria-labelledby="compliance-title">
+          <div class="panel-heading">
+            <div>
+              <h2 id="compliance-title">Obrigações e evidências</h2>
+              <p>Registre a fonte, o prazo, a pessoa responsável e os comprovantes do projeto.</p>
+            </div>
+          </div>
+          <p class="report-scope-note">“Revisado pelo clube” e “submetido” são estados internos. Eles não indicam aprovação pelo CBC ou por outra entidade.</p>
+          <p id="compliance-access-note" class="inline-feedback" role="status" hidden></p>
+          <form id="project-requirement-form" class="form-grid compliance-requirement-form">
+            <div class="form-field">
+              <label for="requirement-title">Obrigação</label>
+              <input class="form-input" id="requirement-title" name="title" maxlength="180" required placeholder="Ex.: Entregar relatório de execução do objeto">
+            </div>
+            <div class="form-field">
+              <label for="requirement-source">Norma ou documento de origem</label>
+              <input class="form-input" id="requirement-source" name="regulation_name" maxlength="180" required placeholder="Ex.: Termo de execução / regulamento">
+            </div>
+            <div class="form-field">
+              <label for="requirement-source-url">Link oficial</label>
+              <input class="form-input" id="requirement-source-url" name="regulation_url" type="url" maxlength="1000" placeholder="https://…">
+            </div>
+            <div class="form-field">
+              <label for="requirement-version">Versão ou vigência</label>
+              <input class="form-input" id="requirement-version" name="regulation_version" maxlength="120" placeholder="Ex.: IN 05/2025, vigente desde …">
+            </div>
+            <div class="form-field">
+              <label for="requirement-article">Artigo ou item</label>
+              <input class="form-input" id="requirement-article" name="article_reference" maxlength="160" placeholder="Ex.: art. 24, inciso II">
+            </div>
+            <div class="form-field">
+              <label for="requirement-due-date">Prazo</label>
+              <input class="form-input" id="requirement-due-date" name="due_date" type="date">
+            </div>
+            <div class="form-field">
+              <label for="requirement-assignee">Responsável</label>
+              <select class="form-input" id="requirement-assignee" name="responsible_user_id" required>
+                <option value="">Carregando pessoas do clube…</option>
+              </select>
+            </div>
+            <div class="form-field compliance-form-field--wide">
+              <label for="requirement-evidence-expected">Evidência esperada</label>
+              <input class="form-input" id="requirement-evidence-expected" name="evidence_expected" maxlength="1000" placeholder="Relatório, conciliação, fotos, lista nominal…">
+            </div>
+            <div class="form-field compliance-form-field--wide">
+              <label for="requirement-description">Observações e contexto</label>
+              <textarea class="form-input" id="requirement-description" name="description" maxlength="3000" rows="3"></textarea>
+            </div>
+            <div class="form-field compliance-form-field--wide compliance-form-actions">
+              <button class="button button--primary" id="requirement-submit" type="submit">Adicionar obrigação</button>
+              <span class="form-hint">Cadastre somente requisitos confirmados no instrumento ou regulamento aplicável.</span>
+            </div>
+          </form>
+          <div id="project-requirements-list" class="compliance-requirements" aria-live="polite">
+            <p class="empty-state">Carregando obrigações…</p>
+          </div>
+        </section>
+
+        <!-- FILTROS DE PERÍODO -->
+        <div class="panel" style="margin-bottom: var(--space-md); padding: var(--space-sm) var(--space-md);">
+          <div style="display: flex; align-items: center; gap: var(--space-md); flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: var(--space-xs);">
+              <label for="proj-filter-start" style="font-size: 0.82rem; font-weight: 600;">Início:</label>
+              <input type="date" id="proj-filter-start" class="form-input" value="2026-11-01" style="padding: 4px 8px; font-size: 0.82rem; width: auto;">
+            </div>
+            <div style="display: flex; align-items: center; gap: var(--space-xs);">
+              <label for="proj-filter-end" style="font-size: 0.82rem; font-weight: 600;">Fim:</label>
+              <input type="date" id="proj-filter-end" class="form-input" value="2026-11-30" style="padding: 4px 8px; font-size: 0.82rem; width: auto;">
+            </div>
+            <button class="button button--quiet" type="button" id="btn-filter-proj-report" style="padding: 4px 12px; font-size: 0.82rem;">
+              Filtrar Indicadores
+            </button>
+            <label for="proj-export-type" style="font-size: 0.82rem; font-weight: 600;">Exportação operacional:</label>
+            <select id="proj-export-type" class="form-input" style="padding: 4px 8px; font-size: 0.82rem; width: auto;">
+              <option value="beneficiaries">Beneficiários</option>
+              <option value="attendance">Frequência</option>
+              <option value="activities">Atividades</option>
+              <option value="competitions">Competições</option>
+            </select>
+            <button class="button button--quiet" type="button" id="btn-export-project-csv" style="padding: 4px 12px; font-size: 0.82rem;">
+              Baixar CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- CARDS DE INDICADORES CBC -->
+        <div class="dashboard-grid dashboard-grid--coach" style="margin-bottom: var(--space-lg);">
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Beneficiários Ativos</h2>
+                <p>Atletas vinculados ao termo</p>
+              </div>
+            </div>
+            <div style="font-size: 2rem; font-weight: 700; color: var(--color-accent);" id="ind-beneficiaries">3</div>
+            <div style="font-size: 0.8rem; color: var(--color-muted); margin-top: 4px;">Atletas do Futsal Sub-15</div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Execução de Atividades</h2>
+                <p>Previsto vs. Realizado</p>
+              </div>
+            </div>
+            <div style="font-size: 1.25rem; font-weight: 700; color: var(--color-ink);" id="ind-activities">
+              <span id="ind-planned">1</span> previsto(s) · <span id="ind-executed" style="color: var(--color-success);">2</span> com chamada
+            </div>
+            <div style="font-size: 0.8rem; color: var(--color-muted); margin-top: 4px;">Distinção com base na agenda e registros reais</div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Assiduidade Média</h2>
+                <p>Taxa geral de frequência</p>
+              </div>
+            </div>
+            <div style="font-size: 2rem; font-weight: 700; color: var(--color-success);" id="ind-attendance-rate">100%</div>
+            <div style="font-size: 0.8rem; color: var(--color-muted); margin-top: 4px;" id="ind-attendance-details">Presenças e faltas justificadas</div>
+          </div>
+        </div>
+
+        <!-- TABELA DE BENEFICIÁRIOS VINCULADOS -->
+        <div class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Relação Nominal de Beneficiários Vinculados</h2>
+              <p>Atletas cadastrados sob o termo com dados cadastrais e responsáveis</p>
+            </div>
+            <span class="count-label" id="proj-beneficiaries-count">3 atletas</span>
+          </div>
+
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Atleta</th>
+                  <th scope="col">Nascimento</th>
+                  <th scope="col">Posição</th>
+                  <th scope="col">Vínculo ao Termo</th>
+                  <th scope="col">Biometria</th>
+                  <th scope="col">Responsável Legal</th>
+                </tr>
+              </thead>
+              <tbody id="proj-beneficiaries-tbody">
+                <!-- Preenchido via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <p class="empty-search" id="empty-search" hidden>Nenhum item corresponde à busca. Tente outro termo.</p>
+    </main>
+
+    <!-- MODAL DE PRÉ-CADASTRO DE ATLETA -->
+    <dialog class="dialog dialog--modal" id="prereg-dialog" style="max-width: 640px; width: 95%;">
+      <div class="dialog__heading">
+        <h2>Pré-cadastro de Atleta</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+      <p style="margin-bottom: var(--space-md); color: var(--color-muted); font-size: 0.85rem;">
+        Preencha os dados básicos do atleta e do responsável. A ficha será enviada para conferência da secretaria antes da liberação oficial.
+      </p>
+
+      <form id="prereg-form">
+        <div class="form-grid">
+          <div class="form-group form-group--full">
+            <label for="prereg-team">Equipe de destino *</label>
+            <select id="prereg-team" class="form-select" required>
+              <!-- Preenchido dinamicamente com as equipes do clube -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="prereg-athlete-name">Nome completo do atleta *</label>
+            <input type="text" id="prereg-athlete-name" class="form-input" required placeholder="Ex.: Lucas Nogueira">
+          </div>
+
+          <div class="form-group">
+            <label for="prereg-athlete-birth">Data de nascimento</label>
+            <input type="date" id="prereg-athlete-birth" class="form-input">
+          </div>
+
+          <div class="form-group">
+            <label for="prereg-athlete-cpf">CPF do atleta</label>
+            <input type="text" id="prereg-athlete-cpf" class="form-input" placeholder="000.000.000-00">
+          </div>
+
+          <div class="form-group">
+            <label for="prereg-athlete-position">Posição / Função</label>
+            <input type="text" id="prereg-athlete-position" class="form-input" placeholder="Ex.: Ala, Pivô, Goleiro">
+          </div>
+
+          <div class="form-group">
+            <label for="prereg-guardian-name">Nome do responsável legal *</label>
+            <input type="text" id="prereg-guardian-name" class="form-input" required placeholder="Ex.: Renata Nogueira">
+          </div>
+
+          <div class="form-group">
+            <label for="prereg-guardian-rel">Parentesco *</label>
+            <select id="prereg-guardian-rel" class="form-select" required>
+              <option value="Mãe">Mãe</option>
+              <option value="Pai">Pai</option>
+              <option value="Avó/Avô">Avó/Avô</option>
+              <option value="Tutor Legal">Tutor Legal</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="prereg-guardian-phone">Telefone do responsável *</label>
+            <input type="tel" id="prereg-guardian-phone" class="form-input" required placeholder="(31) 98888-0000">
+          </div>
+
+          <div class="form-group">
+            <label for="prereg-guardian-email">E-mail do responsável</label>
+            <input type="email" id="prereg-guardian-email" class="form-input" placeholder="responsavel@email.com">
+          </div>
+
+          <div class="form-group form-group--full">
+            <label for="prereg-notes">Observações do treinador</label>
+            <textarea id="prereg-notes" class="form-textarea" placeholder="Informações relevantes sobre origem do atleta, histórico de treino, etc."></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="button button--quiet" type="button" data-close-dialog>Cancelar</button>
+          <button class="button button--primary" type="submit">Enviar para a Secretaria</button>
+        </div>
       </form>
     </dialog>
 
-    <dialog class="dialog" id="athlete-dialog" aria-labelledby="athlete-dialog-title">
-      <form id="athlete-form" method="dialog" novalidate>
-        <div class="dialog-header"><div><p class="panel-kicker">Novo registro</p><h2 id="athlete-dialog-title">Pré-cadastrar atleta</h2></div><button class="icon-button" type="button" data-close-dialog="athlete-dialog" aria-label="Fechar">×</button></div>
-        <p class="dialog-lede">O cadastro começa em análise e segue para a secretaria.</p>
-        <div class="form-grid"><div class="field form-grid__wide"><label for="athlete-name">Nome do atleta</label><input class="text-input" id="athlete-name" name="name" maxlength="100" required aria-required="true"></div><div class="field"><label for="athlete-team">Equipe</label><select class="text-input" id="athlete-team" name="team" required aria-required="true"></select></div><div class="field"><label for="athlete-guardian">Responsável</label><input class="text-input" id="athlete-guardian" name="guardian" maxlength="100" required aria-required="true"></div></div>
-        <p class="dialog-feedback" id="athlete-feedback" role="status" aria-live="polite"></p><div class="dialog-actions"><button class="button button--quiet" type="button" data-close-dialog="athlete-dialog">Cancelar</button><button class="button button--primary" type="submit">Enviar para conferência</button></div>
+    <!-- MODAL DE RECUSA COM JUSTIFICATIVA -->
+    <dialog class="dialog dialog--modal" id="reject-dialog" style="max-width: 480px;">
+      <div class="dialog__heading">
+        <h2>Recusar / Solicitar Correção</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+      <p style="margin-bottom: var(--space-md); color: var(--color-muted); font-size: 0.85rem;">
+        Informe a justificativa ou documento faltante para orientar o treinador:
+      </p>
+      <form id="reject-form">
+        <input type="hidden" id="reject-prereg-id">
+        <div class="form-group">
+          <label for="reject-reason">Motivo da recusa *</label>
+          <textarea id="reject-reason" class="form-textarea" required placeholder="Ex.: Falta anexar documento de identidade e comprovante de residência."></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="button button--quiet" type="button" data-close-dialog>Cancelar</button>
+          <button class="button button--primary" type="submit" style="background: var(--color-error); border-color: var(--color-error);">Confirmar recusa</button>
+        </div>
       </form>
     </dialog>
 
-    <dialog class="dialog dialog--notice" id="demo-info-dialog" aria-labelledby="demo-info-title">
-      <div class="dialog-header"><div><p class="panel-kicker">Sobre este ambiente</p><h2 id="demo-info-title">Demonstração com dados fictícios</h2></div><button class="icon-button" type="button" data-close-dialog="demo-info-dialog" aria-label="Fechar">×</button></div>
-      <p class="dialog-lede">Cadastros e reservas são exemplos guardados só neste navegador. Use “Restaurar exemplo” para voltar ao estado inicial. Não inclua dados reais.</p>
-      <div class="dialog-actions"><button class="button button--primary" type="button" data-close-dialog="demo-info-dialog">Entendi</button></div>
+    <!-- MODAL DE RESERVA DE INSTALAÇÃO (AGENDA) -->
+    <dialog class="dialog dialog--modal" id="reservation-dialog" style="max-width: 600px; width: 95%;">
+      <div class="dialog__heading">
+        <h2>Solicitar Reserva de Instalação</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+      <p style="margin-bottom: var(--space-md); color: var(--color-muted); font-size: 0.85rem;">
+        Selecione a instalação, a data e o horário. O sistema confere conflitos ao enviar a solicitação e sugere alternativas quando disponíveis.
+      </p>
+
+      <div id="modal-conflict-box" style="display: none; padding: var(--space-sm); border: 1px solid var(--color-alert); background: var(--color-alert-soft); margin-bottom: var(--space-md);">
+        <strong style="color: var(--color-alert-ink); font-size: 0.85rem;">Aviso de Conflito:</strong>
+        <p id="modal-conflict-msg" style="font-size: 0.82rem; margin: 4px 0; color: var(--color-ink-2);"></p>
+        <div id="modal-alternatives-list" style="margin-top: 6px; display: flex; gap: 4px; flex-wrap: wrap;"></div>
+      </div>
+
+      <form id="reservation-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="res-venue">Instalação *</label>
+            <select id="res-venue" class="form-select" required>
+              <!-- Carregado via API -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="res-date">Data da atividade *</label>
+            <input type="date" id="res-date" class="form-input" required>
+          </div>
+
+          <div class="form-group">
+            <label for="res-start">Horário de início *</label>
+            <input type="time" id="res-start" class="form-input" required value="16:00">
+          </div>
+
+          <div class="form-group">
+            <label for="res-end">Horário de término *</label>
+            <input type="time" id="res-end" class="form-input" required value="18:00">
+          </div>
+
+          <div class="form-group form-group--full">
+            <label for="res-title">Título / Motivo do agendamento *</label>
+            <input type="text" id="res-title" class="form-input" required placeholder="Ex.: Treino extra Sub-15 ou Jogo amistoso contra Atlético">
+          </div>
+
+          <div class="form-group">
+            <label for="res-team">Equipe vinculada</label>
+            <select id="res-team" class="form-select">
+              <option value="">Nenhuma (Treino geral ou manutenção)</option>
+              <!-- Preenchido via API -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="res-type">Tipo de atividade</label>
+            <select id="res-type" class="form-select">
+              <option value="training">Treino regular / extra</option>
+              <option value="match">Jogo em casa / Amistoso</option>
+              <option value="maintenance">Manutenção do espaço</option>
+              <option value="event">Evento do clube</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="button button--quiet" type="button" data-close-dialog>Cancelar</button>
+          <button class="button button--primary" type="submit">Confirmar Reserva</button>
+        </div>
+      </form>
     </dialog>
-    <div class="toast-region" id="toast-region" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- MODAL DE CANCELAMENTO DE RESERVA -->
+    <dialog class="dialog dialog--modal" id="cancel-reservation-dialog" style="max-width: 480px;">
+      <div class="dialog__heading">
+        <h2>Cancelar Reserva de Instalação</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+      <p style="margin-bottom: var(--space-md); color: var(--color-muted); font-size: 0.85rem;">
+        O cancelamento libera a instalação imediatamente e mantém o registro na trilha de auditoria:
+      </p>
+      <form id="cancel-reservation-form">
+        <input type="hidden" id="cancel-reservation-id">
+        <div class="form-group">
+          <label for="cancel-res-reason">Motivo do cancelamento *</label>
+          <textarea id="cancel-res-reason" class="form-textarea" required placeholder="Ex.: Treino transferido para a quadra coberta por previsão de chuva."></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="button button--quiet" type="button" data-close-dialog>Voltar</button>
+          <button class="button button--primary" type="submit" style="background: var(--color-error); border-color: var(--color-error);">Confirmar Cancelamento</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- MODAL DE INICIAR NOVO PROCESSO -->
+    <dialog class="dialog dialog--modal" id="start-workflow-dialog" style="max-width: 520px; width: 95%;">
+      <div class="dialog__heading">
+        <h2>Iniciar Novo Processo</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+      <p style="margin-bottom: var(--space-md); color: var(--color-muted); font-size: 0.85rem;">
+        Escolha um modelo para iniciar o processo. As etapas, responsáveis e aprovações são configurados pela equipe:
+      </p>
+
+      <form id="start-workflow-form">
+        <div class="form-group">
+          <label for="wf-tpl-select">Modelo de Processo *</label>
+          <select id="wf-tpl-select" class="form-select" required>
+            <option value="">Carregando modelos publicados…</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="wf-new-title">Título do Processo *</label>
+          <input type="text" id="wf-new-title" class="form-input" required placeholder="Ex.: Jogo Oficial contra Olympico Sub-15">
+        </div>
+
+        <div class="form-actions">
+          <button class="button button--quiet" type="button" data-close-dialog>Cancelar</button>
+          <button class="button button--primary" type="submit">Iniciar Processo</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- PAINEL LATERAL CONTEXTUAL DO NÓ DO FLUXO -->
+    <dialog class="dialog dialog--side-panel" id="workflow-drawer" aria-labelledby="wf-drawer-title">
+      <div class="dialog__heading">
+        <h2 id="wf-drawer-title">Detalhes da Etapa</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar painel">Fechar</button>
+      </div>
+
+      <dl class="drawer-details">
+        <div><dt>Etapa</dt><dd id="wf-drawer-step-title">—</dd></div>
+        <div><dt>Papel responsável</dt><dd id="wf-drawer-role">—</dd></div>
+        <div><dt>Situação</dt><dd id="wf-drawer-status">—</dd></div>
+      </dl>
+
+      <section class="workflow-step-guidance" aria-labelledby="wf-drawer-guidance-title">
+        <h3 id="wf-drawer-guidance-title">O que fazer</h3>
+        <p id="wf-drawer-instruction"></p>
+        <ul id="wf-drawer-checklist"></ul>
+        <p class="workflow-guidance-note" id="wf-drawer-note"></p>
+      </section>
+
+      <div id="wf-drawer-action-container" style="margin-top: var(--space-md);">
+        <!-- Formulário ou ação do nó -->
+      </div>
+    </dialog>
+
+    <!-- MODAL DE ANEXAR SÚMULA / DOCUMENTO -->
+    <dialog class="dialog dialog--modal" id="modal-attach-sumula" style="max-width: 500px; width: 95%;">
+      <div class="dialog__heading">
+        <h2>Anexar Súmula da Partida</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+      <p style="margin-bottom: var(--space-md); color: var(--color-muted); font-size: 0.85rem;" id="attach-match-info">
+        Envie a súmula oficial assinada pela arbitragem (formato PDF ou imagem):
+      </p>
+
+      <form id="attach-sumula-form">
+        <input type="hidden" id="attach-match-id">
+        <div class="form-group">
+          <label for="attach-file-name">Nome do arquivo / Descrição *</label>
+          <input type="text" id="attach-file-name" class="form-input" required placeholder="Ex.: sumula_jogo_atletico_vale_14nov.pdf">
+        </div>
+        <div class="form-group">
+          <label for="attach-file-type">Tipo de documento</label>
+          <select id="attach-file-type" class="form-select">
+            <option value="sumula">Súmula oficial da partida</option>
+            <option value="insurance">Comprovante de seguro</option>
+            <option value="other">Outro comprovante</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button class="button button--quiet" type="button" data-close-dialog>Cancelar</button>
+          <button class="button button--primary" type="submit">Enviar Arquivo e Resolver Pendência</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- MODAL DE REGISTRAR RESULTADO DE PARTIDA -->
+    <dialog class="dialog dialog--modal" id="modal-match-result" style="max-width: 440px; width: 95%;">
+      <div class="dialog__heading">
+        <h2>Registrar Placar Oficial</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+      <p style="margin-bottom: var(--space-md); color: var(--color-muted); font-size: 0.85rem;" id="result-match-info">
+        Informe o resultado final da partida:
+      </p>
+      <form id="match-result-form">
+        <input type="hidden" id="result-match-id">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="score-home">Gols do Clube *</label>
+            <input type="number" id="score-home" class="form-input" required min="0" value="0">
+          </div>
+          <div class="form-group">
+            <label for="score-away">Gols do Adversário *</label>
+            <input type="number" id="score-away" class="form-input" required min="0" value="0">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="button button--quiet" type="button" data-close-dialog>Cancelar</button>
+          <button class="button button--primary" type="submit">Salvar Placar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- MODAL DE PRÉVIA DO DOSSIÊ DA COMPETIÇÃO -->
+    <dialog class="dialog dialog--modal" id="modal-dossier-preview" style="max-width: 650px; width: 95%;">
+      <div class="dialog__heading">
+        <h2>Dossiê Documental da Competição</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+      <div id="dossier-preview-body" style="font-size: 0.88rem; line-height: 1.6; color: var(--color-ink-2);">
+        <!-- Conteúdo do dossiê preenchido via API -->
+      </div>
+      <div class="form-actions">
+        <button class="button button--quiet" type="button" data-close-dialog>Fechar</button>
+        <button class="button button--primary" type="button" id="btn-download-dossier-json">Baixar Manifesto (JSON)</button>
+      </div>
+    </dialog>
+
+    <!-- MODAL DE CHAMADA RÁPIDA DE PRESENÇA -->
+    <dialog class="dialog dialog--modal" id="modal-quick-attendance" style="max-width: 580px; width: 95%;">
+      <div class="dialog__heading">
+        <h2>Registro de Presença — Treino</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+      <p style="margin-bottom: var(--space-md); color: var(--color-muted); font-size: 0.85rem;" id="attendance-dialog-info">
+        Marque a frequência dos atletas com 1 toque (Presente, Falta ou Falta Justificada):
+      </p>
+
+      <form id="attendance-form">
+        <input type="hidden" id="attendance-team-id">
+        <input type="hidden" id="attendance-date">
+
+        <div id="attendance-roster-list" style="display: flex; flex-direction: column; gap: var(--space-xs); margin-bottom: var(--space-md); max-height: 340px; overflow-y: auto;">
+          <!-- Lista de atletas com seletores de presença preenchidos via API -->
+        </div>
+
+        <div class="form-actions">
+          <button class="button button--quiet" type="button" data-close-dialog>Cancelar</button>
+          <button class="button button--primary" type="submit">Salvar Chamada</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- MODAL DE DETALHES DA VIAGEM / PRESTAÇÃO DE CONTAS -->
+    <dialog class="dialog dialog--modal" id="modal-trip-details" style="max-width: 780px; width: 95%;">
+      <div class="dialog__heading">
+        <h2 id="trip-details-title">Viagem</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+
+      <div style="display: flex; gap: var(--space-md); margin-bottom: var(--space-md); flex-wrap: wrap; background: var(--color-surface-2); padding: var(--space-sm); border-radius: var(--radius-md);">
+        <div><strong style="color: var(--color-ink);">Destino:</strong> <span id="trip-detail-destination">Juiz de Fora/MG</span></div>
+        <div><strong style="color: var(--color-ink);">Período:</strong> <span id="trip-detail-period">28/11 a 30/11</span></div>
+        <div><strong style="color: var(--color-ink);">Transporte:</strong> <span id="trip-detail-transport">Ônibus fretado</span></div>
+        <div><strong style="color: var(--color-ink);">Fonte/Projeto:</strong> <span id="trip-detail-project">Programa CBC</span></div>
+      </div>
+
+      <!-- Resumo financeiro consolidado -->
+      <div class="kpi-grid trip-kpi-grid" style="margin-bottom: var(--space-md);">
+        <div class="panel" style="padding: var(--space-sm);">
+          <p class="meta-label">Total em Diárias</p>
+          <p class="kpi-value" id="trip-financial-allowances" style="font-size: 1.25rem;">R$ 0,00</p>
+        </div>
+        <div class="panel" style="padding: var(--space-sm);">
+          <p class="meta-label">Despesas Aprovadas</p>
+          <p class="kpi-value" id="trip-financial-approved" style="font-size: 1.25rem; color: var(--color-success);">R$ 0,00</p>
+        </div>
+        <div class="panel" style="padding: var(--space-sm);">
+          <p class="meta-label">Comprovantes Pendentes</p>
+          <p class="kpi-value" id="trip-financial-pending" style="font-size: 1.25rem; color: var(--color-warning);">R$ 0,00</p>
+        </div>
+      </div>
+
+      <nav class="subnav" aria-label="Abas da viagem" style="margin-bottom: var(--space-sm);">
+        <button class="subnav__tab subnav__tab--active" type="button" id="tab-btn-trip-roster">Delegação & Diárias</button>
+        <button class="subnav__tab" type="button" id="tab-btn-trip-expenses">Prestação de Contas (Comprovantes)</button>
+      </nav>
+
+      <!-- ABA 1: CONVOCADOS E DIÁRIAS -->
+      <div id="tab-content-trip-roster">
+        <div class="data-table-wrapper trip-table-wrap" style="max-height: 260px; overflow-y: auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Convocado</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Diária Unitária</th>
+                <th scope="col">Dias</th>
+                <th scope="col">Total Diárias</th>
+                <th scope="col">Autorização de Viagem</th>
+              </tr>
+            </thead>
+            <tbody id="trip-participants-tbody">
+              <!-- Preenchido via API -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ABA 2: PRESTAÇÃO DE CONTAS -->
+      <div id="tab-content-trip-expenses" hidden>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs);">
+          <p style="font-size: 0.85rem; color: var(--color-muted);">Comprovantes e notas fiscais para conferência:</p>
+          <button class="button button--primary" type="button" id="btn-open-add-expense" style="padding: 4px 10px; font-size: 0.8rem;">+ Anexar Comprovante</button>
+        </div>
+        <div class="data-table-wrapper trip-table-wrap trip-table-wrap--expenses" style="max-height: 240px; overflow-y: auto;">
+          <table class="data-table trip-expenses-table">
+            <thead>
+              <tr>
+                <th scope="col">Despesa</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Fonte</th>
+                <th scope="col">Comprovante</th>
+                <th scope="col">Situação</th>
+                <th scope="col">Conferência</th>
+              </tr>
+            </thead>
+            <tbody id="trip-expenses-tbody">
+              <!-- Preenchido via API -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="form-actions" style="justify-content: space-between; margin-top: var(--space-md);">
+        <button class="button button--quiet" type="button" data-close-dialog>Fechar</button>
+        <button class="button button--primary" type="button" id="btn-export-trip-dossier">Exportar Dossiê da Viagem (JSON)</button>
+      </div>
+    </dialog>
+
+    <!-- MODAL DE CADASTRO DE NOVA VIAGEM -->
+    <dialog class="dialog dialog--modal" id="modal-create-trip" style="max-width: 580px; width: 95%;">
+      <div class="dialog__heading">
+        <h2>Solicitar Nova Viagem</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+        <p style="margin-bottom: var(--space-md); color: var(--color-muted); font-size: 0.85rem;">
+        Informe o destino, o período e a equipe para organizar participantes e transporte:
+      </p>
+
+      <form id="create-trip-form">
+        <div class="form-grid">
+          <div class="form-group" style="grid-column: span 2;">
+            <label for="trip-form-title">Título da Viagem / Finalidade *</label>
+            <input type="text" id="trip-form-title" class="form-input" required placeholder="Ex.: Fase Regional Sul de Minas">
+          </div>
+          <div class="form-group">
+            <label for="trip-form-team">Equipe *</label>
+            <select id="trip-form-team" class="form-select" required>
+              <option value="team_sub15_futsal">Sub-15 de Futsal</option>
+              <option value="team_sub13_basquete">Sub-13 de Basquete</option>
+              <option value="team_sub17_volei">Sub-17 de Vôlei</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="trip-form-transport">Tipo de Transporte *</label>
+            <select id="trip-form-transport" class="form-select" required>
+              <option value="onibus_fretado">Ônibus Fretado</option>
+              <option value="van_clube">Van do Clube</option>
+              <option value="aereo">Passagem Aérea</option>
+              <option value="transporte_proprio">Transporte Próprio</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="trip-form-city">Cidade de Destino *</label>
+            <input type="text" id="trip-form-city" class="form-input" required placeholder="Juiz de Fora">
+          </div>
+          <div class="form-group">
+            <label for="trip-form-state">Estado *</label>
+            <input type="text" id="trip-form-state" class="form-input" required value="MG">
+          </div>
+          <div class="form-group">
+            <label for="trip-form-dep-date">Data de Ida *</label>
+            <input type="date" id="trip-form-dep-date" class="form-input" required value="2026-11-28">
+          </div>
+          <div class="form-group">
+            <label for="trip-form-ret-date">Data de Retorno *</label>
+            <input type="date" id="trip-form-ret-date" class="form-input" required value="2026-11-30">
+          </div>
+          <div class="form-group" style="grid-column: span 2;">
+            <label for="trip-form-lodging">Alojamento / Hospedagem</label>
+            <input type="text" id="trip-form-lodging" class="form-input" placeholder="Ex.: Hotel Minas Centro, 6 quartos">
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="button button--quiet" type="button" data-close-dialog>Cancelar</button>
+          <button class="button button--primary" type="submit">Cadastrar Viagem</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- MODAL DE ANEXAR COMPROVANTE DE DESPESA -->
+    <dialog class="dialog dialog--modal" id="modal-add-expense" style="max-width: 480px; width: 95%;">
+      <div class="dialog__heading">
+        <h2>Anexar Comprovante de Despesa</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+      <p style="margin-bottom: var(--space-md); color: var(--color-muted); font-size: 0.85rem;">
+        Insira a nota fiscal ou comprovante da viagem para conferência administrativa:
+      </p>
+
+      <form id="add-expense-form">
+        <input type="hidden" id="expense-trip-id">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="exp-type">Tipo de Despesa *</label>
+            <select id="exp-type" class="form-select" required>
+              <option value="alimentacao">Alimentação</option>
+              <option value="hospedagem">Hospedagem</option>
+              <option value="transporte">Transporte / Passagem</option>
+              <option value="pedagio">Pedágio</option>
+              <option value="taxa_inscricao">Taxa de Inscrição</option>
+              <option value="outros">Outros</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exp-source">Fonte do Recurso *</label>
+            <select id="exp-source" class="form-select" required>
+              <option value="cbc">Convênio CBC</option>
+              <option value="recurso_proprio">Recurso Próprio do Clube</option>
+              <option value="patrocinio">Patrocínio</option>
+            </select>
+          </div>
+          <div class="form-group" style="grid-column: span 2;">
+            <label for="exp-desc">Descrição do Gasto *</label>
+            <input type="text" id="exp-desc" class="form-input" required placeholder="Ex.: Almoço da delegação no trajeto">
+          </div>
+          <div class="form-group">
+            <label for="exp-amount">Valor (R$) *</label>
+            <input type="number" step="0.01" min="0.01" id="exp-amount" class="form-input" required placeholder="150.00">
+          </div>
+          <div class="form-group">
+            <label for="exp-file">Arquivo do Comprovante *</label>
+            <input type="file" id="exp-file" class="form-input" accept=".pdf,.png,.jpg,.jpeg">
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="button button--quiet" type="button" data-close-dialog>Cancelar</button>
+          <button class="button button--primary" type="submit">Enviar Comprovante</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- MODAL DE BUSCA GLOBAL / PALETA DE COMANDOS (CTRL + K) -->
+    <dialog class="dialog dialog--modal command-palette-dialog" id="command-palette-dialog" closedby="any" style="max-width: 620px; width: 95%; padding: 0; overflow: hidden; border-radius: var(--radius-lg); box-shadow: 0 20px 40px rgba(0,0,0,0.25);">
+      <div style="padding: var(--space-md); border-bottom: 1px solid var(--color-border); display: flex; align-items: center; gap: var(--space-sm); background: var(--color-surface);">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--color-ink-3)" stroke-width="2" fill="none" aria-hidden="true">
+          <circle cx="10.8" cy="10.8" r="6.8"></circle>
+          <path d="m16 16 4.3 4.3"></path>
+        </svg>
+        <input type="search" id="palette-search-input" placeholder="Buscar módulos, registros, automações, processos ou ações…" style="width: 100%; border: none; outline: none; font-size: 1rem; color: var(--color-ink); background: transparent;" autocomplete="off" aria-controls="palette-results-container" role="combobox" aria-expanded="true">
+        <kbd style="font-size: 0.75rem; padding: 2px 6px; background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius-sm); color: var(--color-muted);">ESC</kbd>
+      </div>
+      <div id="palette-results-container" role="listbox" aria-label="Resultados da busca" style="max-height: 380px; overflow-y: auto; padding: var(--space-xs) 0;">
+        <!-- Preenchido via API de busca -->
+      </div>
+      <div style="padding: 8px 16px; background: var(--color-surface-2); border-top: 1px solid var(--color-border); font-size: 0.76rem; color: var(--color-muted); display: flex; justify-content: space-between;">
+        <span>Navegue com setas e pressione <strong>Enter</strong></span>
+        <span>Busca OSS</span>
+      </div>
+    </dialog>
+
+    <!-- MODAL DE DETALHES E AUDITORIA DO REGISTRO DE MÓDULO -->
+    <dialog class="dialog dialog--side-panel" id="module-record-dialog" closedby="any" aria-labelledby="module-record-dialog-title">
+      <div class="dialog__heading">
+        <h2 id="module-record-dialog-title">Detalhes do registro</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar painel">Fechar</button>
+      </div>
+      <div id="module-record-dialog-body" class="oss-record-detail-body"></div>
+    </dialog>
+
+    <!-- MODAL DE EXPLICAÇÃO E PRINTS VISUAIS DO MÓDULO -->
+    <dialog class="dialog dialog--modal dialog--module-guide" id="module-guide-dialog" closedby="any" aria-labelledby="module-guide-dialog-title">
+      <div class="dialog__heading">
+        <h2 id="module-guide-dialog-title">Como funciona este módulo</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar janela">Fechar</button>
+      </div>
+      <div id="module-guide-dialog-body" class="oss-guide-body"></div>
+    </dialog>
+
+    <!-- MODAL DE TESTE MANUAL DO FLUXO N8N -->
+    <dialog class="dialog dialog--modal" id="auto-test-dialog" closedby="any" aria-labelledby="auto-test-dialog-title" style="max-width: 560px; width: 95%;">
+      <div class="dialog__heading">
+        <h2 id="auto-test-dialog-title">Testar fluxo de automação</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar janela">Fechar</button>
+      </div>
+      <form id="auto-test-form">
+        <p class="oss-help">Escolha um registro existente do módulo gatilho ou informe um JSON de teste para simular a entrada.</p>
+        <div class="form-group" id="auto-test-record-group">
+          <label for="auto-test-record">Registro real do módulo (opcional)</label>
+          <select id="auto-test-record" class="form-select"></select>
+        </div>
+        <div class="form-group">
+          <label for="auto-test-json">Payload JSON de teste (quando não selecionar registro)</label>
+          <textarea id="auto-test-json" class="form-textarea" rows="5">{ "valor": 1500, "situacao": "Aprovado", "titulo": "Teste OSS" }</textarea>
+        </div>
+        <div class="form-actions">
+          <button class="button button--quiet" type="button" data-close-dialog>Cancelar</button>
+          <button class="button button--primary" type="submit">▶ Executar teste agora</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="dialog dialog--modal" id="modal-customize-layout" style="max-width: 500px; width: 95%;">
+      <div class="dialog__heading">
+        <h2>Personalizar Meu Espaço</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar">Fechar</button>
+      </div>
+      <p style="margin-bottom: var(--space-md); color: var(--color-muted); font-size: 0.85rem;">
+        Escolha quais widgets deseja exibir na sua área de trabalho. Suas preferências são salvas apenas para o seu usuário:
+      </p>
+
+      <form id="customize-layout-form">
+        <div id="customize-widgets-list" style="display: flex; flex-direction: column; gap: var(--space-xs); margin-bottom: var(--space-md);">
+          <!-- Preenchido via API de layout -->
+        </div>
+
+        <div class="form-actions" style="justify-content: space-between;">
+          <button class="button button--quiet" type="button" id="btn-reset-layout" style="color: var(--color-error);">Restaurar Padrão</button>
+          <div style="display: flex; gap: var(--space-xs);">
+            <button class="button button--quiet" type="button" data-close-dialog>Cancelar</button>
+            <button class="button button--primary" type="submit">Salvar Preferências</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- MODAL INFORMATIVO -->
+    <dialog class="dialog dialog--modal" id="preview-dialog" aria-labelledby="preview-dialog-title">
+      <div class="dialog__heading">
+        <h2 id="preview-dialog-title">Sobre esta demonstração</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar janela">Fechar</button>
+      </div>
+      <p>Esta apresentação usa a interface e os fluxos da plataforma OSS com dados de exemplo do Clube Olympico.</p>
+      <ul style="margin: var(--space-sm) 0; padding-left: var(--space-lg); font-size: 0.88rem; color: var(--color-ink-2); line-height: 1.6;">
+        <li><strong>Cadastro de atletas:</strong> dados iniciais, conferência da secretaria e acompanhamento das etapas.</li>
+        <li><strong>Agenda de espaços:</strong> reservas por instalação, com validação de horários sobrepostos.</li>
+        <li><strong>Dados fictícios:</strong> mudanças ficam no armazenamento local deste navegador e não são enviadas ao clube.</li>
+      </ul>
+      <button class="button button--quiet" type="button" id="reset-demo-data">Restaurar dados de exemplo</button>
+    </dialog>
+
+    <!-- PAINEL LATERAL DE DETALHES -->
+    <dialog class="dialog dialog--side-panel" id="activity-drawer" aria-labelledby="activity-drawer-title">
+      <div class="dialog__heading">
+        <h2 id="activity-drawer-title">Treino Sub-15</h2>
+        <button class="dialog__close" type="button" data-close-dialog aria-label="Fechar painel">Fechar</button>
+      </div>
+      <dl class="drawer-details">
+        <div><dt>Quando</dt><dd id="activity-drawer-time">Quarta-feira, 18 de novembro, às 18:00</dd></div>
+        <div><dt>Onde</dt><dd id="activity-drawer-venue">Quadra A</dd></div>
+        <div><dt>Modalidade</dt><dd id="activity-drawer-modality">Futsal</dd></div>
+        <div><dt>Equipe</dt><dd id="activity-drawer-team">Sub-15 de Futsal</dd></div>
+        <div><dt>Situação</dt><dd><span id="activity-drawer-status" class="status status--scheduled">Confirmado</span></dd></div>
+      </dl>
+      <p class="drawer-note">A disponibilidade e os conflitos de horário são conferidos pela agenda do workspace.</p>
+    </dialog>
+
+    <footer class="app-footer container">
+      <span>OSS · Plataforma open source para apps administrativos</span>
+      <span>Demonstração pública · dados fictícios</span>
+    </footer>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,0 +1,75 @@
+:root {
+  --color-paper: #f5f6f3;
+  --color-paper-2: #ffffff;
+  --color-paper-3: #eef1ea;
+  --color-ink: #20251f;
+  --color-ink-2: #495149;
+  --color-muted: #69716a;
+  --color-accent: #b6ed50;
+  --color-accent-deep: #71992c;
+  --color-accent-soft: #f0f7df;
+  --color-accent-rule: #d6e8b5;
+  --color-focus: rgba(113, 153, 44, .42);
+  --color-rule: #e5e8e1;
+  --radius-card: 16px;
+  --radius-card-sm: 12px;
+  --radius-modal: 20px;
+  --shadow-card: 0 2px 6px rgba(23, 31, 18, .035), 0 12px 34px rgba(23, 31, 18, .045);
+  --shadow-card-hover: 0 8px 20px rgba(23, 31, 18, .055), 0 18px 40px rgba(23, 31, 18, .075);
+}
+
+body { background: var(--color-paper); }
+.button--primary { color: #1d2811; border-color: #a7dc48; box-shadow: 0 2px 5px rgba(91, 125, 35, .12); }
+.button--primary:hover { background: #c4f36a; border-color: #a7dc48; }
+.demo-banner { display: flex !important; background: #f1f7e7; border-color: #e0ebcc; }
+.demo-banner__label { background: #30471a; color: #f5ffd9; letter-spacing: .08em; }
+.demo-help-action { color: #526f25; }
+.demo-login-note { display: grid; gap: 4px; margin: 18px 0 0; padding: 14px 16px; border: 1px solid #e2ebd3; border-radius: 12px; background: #f7faef; color: #3c4931; font-size: .82rem; }
+.demo-login-note strong { color: #27351b; font-size: .78rem; letter-spacing: .01em; }
+.demo-login-note span { font-variant-numeric: tabular-nums; font-weight: 650; }
+.demo-login-note small { color: #74806c; line-height: 1.45; }
+.login-help { margin-top: 16px; }
+.app-sidebar { box-shadow: 8px 0 28px rgba(11, 17, 12, .08); }
+.sidebar-section-label--group { margin-top: 26px; }
+.sidebar-club-card__text span { letter-spacing: .01em; }
+.topbar { background: rgba(255, 255, 255, .9); backdrop-filter: blur(18px); }
+.page-heading { margin-bottom: 22px; }
+.page-heading h1 { letter-spacing: -.045em; }
+.club-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 0 0 18px; }
+.club-metrics article { display: grid; grid-template-columns: 42px 1fr; grid-template-rows: auto auto; align-items: center; column-gap: 12px; min-height: 88px; padding: 15px 18px; border: 1px solid var(--color-rule); border-radius: 15px; background: linear-gradient(145deg, #fff, #fbfcf9); box-shadow: 0 3px 12px rgba(25, 34, 18, .035); }
+.club-metric__symbol { grid-row: 1 / span 2; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 13px; background: #eff6e4; color: #668a2c; font-size: 1.18rem; }
+.club-metric__symbol--teams { background: #edf2fb; color: #5573ad; }
+.club-metric__symbol--venues { background: #e8f4f2; color: #368078; }
+.club-metric__symbol--pending { background: #fbf1df; color: #a47b2c; }
+.club-metric__value { align-self: end; color: var(--color-ink); font-size: 1.35rem; font-weight: 750; letter-spacing: -.045em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.club-metric__label { align-self: start; color: var(--color-muted); font-size: .73rem; line-height: 1.35; }
+.oss-empty-installed { margin: 0 0 20px; padding: 18px 20px 20px; border: 1px solid var(--color-rule); border-radius: 17px; background: linear-gradient(120deg, #fff 0%, #fff 66%, #f5f9ed 100%); box-shadow: 0 2px 8px rgba(25, 34, 18, .025); }
+.oss-installed-header { margin-bottom: 14px; }
+.oss-installed-header h2 { margin-top: 4px; }
+.oss-installed-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.oss-module-card--club-demo { min-height: 150px; padding: 16px 18px; border-radius: 14px; }
+.oss-module-card--club-demo h2 { margin-top: 10px; }
+.oss-module-card--club-demo p { max-width: 58ch; }
+#view-meu-espaco > .dashboard-grid:not([hidden]) { display: grid !important; }
+#view-meu-espaco > .dashboard-grid[hidden] { display: none !important; }
+.dashboard-grid--coordination > .facility-panel:first-child { border-top: 3px solid #b6ed50; }
+.coord-requests-panel { border-top: 3px solid #e8bf67; }
+.teams-panel { border-top: 3px solid #91a9db; }
+.panel { transition: box-shadow 180ms ease, transform 180ms ease; }
+.panel:hover { transform: translateY(-1px); }
+.workflow-header-card { background: linear-gradient(135deg, #fff, #f6f9ef); }
+.workflow-node--in_progress { border-color: #a6d64a; box-shadow: 0 0 0 3px rgba(182, 237, 80, .14); }
+.app-footer { color: #778072; }
+.app-footer span:last-child { color: #617a37; font-weight: 650; }
+
+@media (max-width: 760px) {
+  .club-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .club-metrics article { min-height: 76px; padding: 12px; }
+  .club-metric__symbol { width: 36px; height: 36px; }
+  .oss-installed-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel, .button { transition-duration: .01ms !important; }
+  .panel:hover, .button:hover { transform: none; }
+}

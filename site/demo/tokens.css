@@ -1,0 +1,150 @@
+:root {
+  color-scheme: light;
+
+  /* Geometria e Raios Apple (Squircles & Continuous Curves) */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-input: 12px;
+  --radius-card: 20px;
+  --radius-card-sm: 16px;
+  --radius-card-lg: 26px;
+  --radius-modal: 24px;
+  --radius-pill: 999px;
+  --radius-full: 999px;
+
+  /* Espaçamentos */
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 36px;
+  --space-2xl: 56px;
+  --space-3xl: 84px;
+  --space-4xl: 120px;
+
+  /* Tipografia Apple Human Interface */
+  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", -apple-system-body, system-ui, sans-serif;
+  --font-display: var(--font-system);
+  --font-body: var(--font-system);
+  --font-outlier: var(--font-system);
+
+  --text-2xs: 0.6875rem; /* 11px */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.84375rem; /* 13.5px */
+  --text-md: 0.9375rem;  /* 15px */
+  --text-lead: 1.0625rem;/* 17px */
+  --text-title: 1.125rem;/* 18px */
+  --text-section: 1.35rem;/* 21.6px */
+  --text-display-s: 1.6rem;
+  --text-display: 2rem;
+  --text-2xl: 2.25rem;
+  --text-3xl: 2.75rem;
+
+  --tracking-tight: -0.025em;
+  --tracking-tighter: -0.038em;
+  --tracking-display: var(--tracking-tighter);
+  --display-weight: 700;
+
+  /* Animações e Físicas Apple (Spring & Ease-out) */
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: var(--ease-apple);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-micro: 120ms;
+  --dur-short: 200ms;
+  --dur-medium: 320ms;
+  --dur-long: 450ms;
+
+  /* Superfícies & Materiais Apple (Canvas, Vibrancy, Frosted Glass) */
+  --color-paper: #f5f5f7;          /* Fundo suave aveludado Apple */
+  --color-paper-2: #ffffff;        /* Cartões brancos nítidos */
+  --color-paper-3: #f0f0f4;        /* Superfícies terciárias e preenchimentos sutis */
+  --color-paper-edge: #e5e5ea;     /* Borda suave Apple */
+  --color-rule: rgba(0, 0, 0, 0.08); /* Linhas de separação ultrafinas */
+  --color-rule-light: rgba(0, 0, 0, 0.04);
+
+  /* Vidro fosco e transluscência */
+  --surface-glass: rgba(255, 255, 255, 0.78);
+  --surface-glass-solid: rgba(255, 255, 255, 0.92);
+  --surface-glass-dark: rgba(29, 29, 31, 0.8);
+  --backdrop-blur: blur(20px) saturate(180%);
+  --backdrop-blur-deep: blur(32px) saturate(190%);
+
+  /* Textos e Contraste Didático */
+  --color-ink: #1d1d1f;            /* Texto primário Apple (alto contraste, acolhedor) */
+  --color-ink-2: #48484a;          /* Texto secundário (leitura confortável) */
+  --color-muted: #86868b;          /* Legendas e rótulos auxiliares */
+  --color-ink-3: var(--color-muted);
+
+  /* Cor de Ação do Sistema Apple (System Blue) */
+  --color-accent: #0071e3;         /* Apple Action Blue */
+  --color-accent-deep: #005bb5;    /* Hover / active */
+  --color-accent-soft: rgba(0, 113, 227, 0.09);
+  --color-accent-rule: rgba(0, 113, 227, 0.25);
+  --color-accent-ink: #ffffff;
+  --color-focus: rgba(0, 113, 227, 0.35);
+  --color-field: var(--color-accent);
+
+  /* Cores Semânticas Apple Human Interface (Vibrantes, Suaves e Didáticas) */
+  /* Sucesso / Concluído / Regular */
+  --color-success: #34c759;
+  --color-success-soft: rgba(52, 199, 89, 0.12);
+  --color-success-rule: rgba(52, 199, 89, 0.28);
+  --color-success-ink: #166534;
+
+  /* Atenção / Pendência / Em Andamento */
+  --color-warning: #ff9500;
+  --color-warning-soft: rgba(255, 149, 0, 0.12);
+  --color-warning-rule: rgba(255, 149, 0, 0.28);
+  --color-warning-ink: #9a3412;
+
+  /* Alerta / Erro / Conflito / Rejeitado */
+  --color-alert: #ff3b30;
+  --color-alert-soft: rgba(255, 59, 48, 0.11);
+  --color-alert-rule: rgba(255, 59, 48, 0.26);
+  --color-alert-ink: #991b1b;
+  --color-error: var(--color-alert);
+
+  /* Contexto / CBC / Projetos / Fomento Esportivo (Índigo Apple) */
+  --color-context: #5856d6;
+  --color-context-dark: #3730a3;
+  --color-context-soft: rgba(88, 86, 214, 0.1);
+  --color-context-rule: rgba(88, 86, 214, 0.26);
+
+  /* Instalações / Praças Esportivas (Teal Apple) */
+  --color-teal: #30b0c7;
+  --color-teal-soft: rgba(48, 176, 199, 0.12);
+  --color-teal-rule: rgba(48, 176, 199, 0.28);
+  --color-teal-ink: #0f766e;
+
+  /* Modais e Backdrops */
+  --color-backdrop: rgba(15, 23, 42, 0.35);
+
+  /* Sombras em Camadas (Layered Apple Elevation & Specular Rim) */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-card: 0 2px 10px -2px rgba(0, 0, 0, 0.04), 0 12px 30px -8px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  --shadow-card-hover: 0 4px 16px -2px rgba(0, 0, 0, 0.06), 0 18px 40px -8px rgba(0, 0, 0, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  --shadow-popover: 0 12px 36px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-spotlight: 0 24px 72px -8px rgba(0, 0, 0, 0.22), 0 6px 18px rgba(0, 0, 0, 0.06);
+
+  /* Layout */
+  --container: 1480px;
+  --gutter: 32px;
+  --gap-columns: 24px;
+  --section-gap-s: 48px;
+  --section-gap: 64px;
+  --section-gap-l: 80px;
+
+  /* Camadas Z-Index */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-sticky-nav: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+}
