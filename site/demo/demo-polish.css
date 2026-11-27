@@ -58,6 +58,12 @@ body { background: var(--color-paper); }
 .panel { transition: box-shadow 180ms ease, transform 180ms ease; }
 .panel:hover { transform: translateY(-1px); }
 .workflow-header-card { background: linear-gradient(135deg, #fff, #f6f9ef); }
+.workflow-graph-canvas { padding: 18px 8px; scrollbar-color: #bec9b0 transparent; }
+.workflow-steps { grid-template-columns: repeat(var(--step-count, 4), minmax(145px, 1fr)); gap: 14px; }
+.workflow-step:not(:last-child)::after { width: 10px; }
+.workflow-node { min-height: 154px; padding: 14px; gap: 8px; }
+.workflow-node__title { font-size: .86rem; line-height: 1.32; }
+.workflow-node__role, .workflow-node__status { font-size: .68rem; }
 .workflow-node--in_progress { border-color: #a6d64a; box-shadow: 0 0 0 3px rgba(182, 237, 80, .14); }
 .app-footer { color: #778072; }
 .app-footer span:last-child { color: #617a37; font-weight: 650; }
@@ -67,6 +73,7 @@ body { background: var(--color-paper); }
   .club-metrics article { min-height: 76px; padding: 12px; }
   .club-metric__symbol { width: 36px; height: 36px; }
   .oss-installed-grid { grid-template-columns: 1fr; }
+  .workflow-steps { grid-template-columns: repeat(var(--step-count, 4), minmax(210px, 1fr)); gap: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
