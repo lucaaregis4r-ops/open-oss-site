@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Demonstração interativa de gestão esportiva para clubes e equipes.">
+    <title>Clube OSS · Gestão esportiva</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./processes.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <main class="login-screen" id="login-screen" aria-labelledby="login-title">
+      <div class="login-panel">
+        <section class="login-copy">
+          <a class="wordmark" href="#login-screen" aria-label="Clube OSS, início">
+            <span class="wordmark__glyph" aria-hidden="true">C</span>
+            <span>clube<span class="wordmark__accent">oss</span></span>
+          </a>
+          <div class="login-intro">
+            <p class="eyebrow">Gestão esportiva</p>
+            <h1 id="login-title">O clube em movimento.</h1>
+            <p>Cadastros, espaços e equipes seguem o mesmo processo, do primeiro pedido à confirmação.</p>
+          </div>
+          <form class="login-form" id="login-form" autocomplete="on">
+            <div class="field">
+              <label for="login-email">E-mail</label>
+              <input id="login-email" name="email" type="text" inputmode="email" value="olympico@br" autocomplete="username" required>
+            </div>
+            <div class="field">
+              <label for="login-password">Senha</label>
+              <input id="login-password" name="password" type="password" value="" autocomplete="current-password" required>
+            </div>
+            <button class="button button--primary login-submit" type="submit">Entrar na demonstração</button>
+            <p class="form-message" id="login-feedback" role="status" aria-live="polite"></p>
+          </form>
+          <p class="demo-credentials"><strong>Acesso demonstrativo</strong><span>olympico@br&nbsp; / &nbsp;olympico 80</span></p>
+          <p class="login-note">Use dados de exemplo. As alterações ficam somente neste navegador.</p>
+        </section>
+
+        <aside class="login-preview" aria-label="Prévia dos processos de gestão">
+          <div class="preview-head">
+            <div>
+              <span class="preview-overline">Visão da operação</span>
+              <h2>Do pedido à quadra.</h2>
+            </div>
+            <span class="preview-date" id="preview-date"></span>
+          </div>
+          <div class="preview-workflow" aria-hidden="true">
+            <div class="preview-lane">
+              <span class="preview-lane__label">Cadastro</span>
+              <div class="preview-route">
+                <span class="preview-node preview-node--done">Pré-cadastro</span>
+                <span class="preview-link"></span>
+                <span class="preview-node preview-node--current">Conferência</span>
+                <span class="preview-link"></span>
+                <span class="preview-node">Atleta ativo</span>
+              </div>
+            </div>
+            <div class="preview-lane preview-lane--court">
+              <span class="preview-lane__label">Reserva</span>
+              <div class="preview-route">
+                <span class="preview-node preview-node--done">Solicitação</span>
+                <span class="preview-link"></span>
+                <span class="preview-node preview-node--current">Disponibilidade</span>
+                <span class="preview-link"></span>
+                <span class="preview-node">Confirmada</span>
+              </div>
+            </div>
+          </div>
+          <div class="preview-agenda">
+            <div class="preview-agenda__head"><span>Agenda de hoje</span><span>03 espaços</span></div>
+            <div class="preview-slot"><time>08:00</time><span class="preview-slot__bar preview-slot__bar--lime"></span><span>Futsal Sub-15</span></div>
+            <div class="preview-slot"><time>10:30</time><span class="preview-slot__bar preview-slot__bar--blue"></span><span>Vôlei feminino</span></div>
+            <div class="preview-slot"><time>14:00</time><span class="preview-slot__bar preview-slot__bar--coral"></span><span>Basquete Sub-13</span></div>
+          </div>
+          <p class="preview-caption">Processos claros. Espaços bem aproveitados.</p>
+        </aside>
+      </div>
+    </main>
+
+    <div class="app-shell" id="app-shell" hidden>
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-top">
+          <a class="wordmark wordmark--sidebar" href="#dashboard" aria-label="Clube OSS, painel">
+            <span class="wordmark__glyph" aria-hidden="true">C</span>
+            <span>clube<span class="wordmark__accent">oss</span></span>
+          </a>
+          <button class="icon-button sidebar-close" id="close-sidebar" type="button" aria-label="Fechar navegação">×</button>
+          <button class="tenant-switcher" id="tenant-switcher" type="button" aria-label="Clube da demonstração">
+            <span class="tenant-mark" aria-hidden="true">O</span>
+            <span><strong>Clube Olympico</strong><small>Ambiente de demonstração</small></span>
+            <span class="tenant-caret" aria-hidden="true">⌄</span>
+          </button>
+          <nav class="primary-nav" aria-label="Navegação principal">
+            <p class="nav-label">Operação</p>
+            <button class="nav-item is-active" type="button" data-view="dashboard" aria-current="page">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"></rect><rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="11" width="7" height="10" rx="1.5"></rect><rect x="3" y="14" width="8" height="7" rx="1.5"></rect></svg>
+              <span>Visão geral</span>
+              <span class="nav-count" id="nav-pending-count">0</span>
+            </button>
+            <button class="nav-item" type="button" data-view="people">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 20v-1.5a5.5 5.5 0 0 1 11 0V20zM16 5.5a3 3 0 0 1 0 5.8M17.5 14a4.5 4.5 0 0 1 3 4.3V20h-3"></path></svg>
+              <span>Pessoas</span>
+            </button>
+            <button class="nav-item" type="button" data-view="agenda">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 10h18M8 14h3M8 17h7"></path></svg>
+              <span>Agenda de espaços</span>
+            </button>
+            <button class="nav-item" type="button" data-view="processes">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="6" height="5" rx="1.3"></rect><rect x="15" y="15" width="6" height="5" rx="1.3"></rect><rect x="15" y="4" width="6" height="5" rx="1.3"></rect><path d="M9 6.5h3a3 3 0 0 1 3 3V15M9 6.5h6"></path></svg>
+              <span>Processos</span>
+            </button>
+          </nav>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="demo-status"><span class="demo-status__mark" aria-hidden="true">D</span><span><strong>Dados de demonstração</strong><small>Privados neste navegador</small></span></div>
+          <button class="sidebar-action" id="reset-demo" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0 2 5M20 4v7h-7"></path></svg>
+            <span>Restaurar exemplo</span>
+          </button>
+          <button class="sidebar-action" id="logout-button" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M12 3h5a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5"></path></svg>
+            <span>Sair da demonstração</span>
+          </button>
+          <div class="sidebar-user">
+            <span class="user-monogram" aria-hidden="true">AC</span>
+            <span><strong>Administração</strong><small>Coordenação do clube</small></span>
+            <span class="user-menu" aria-hidden="true">···</span>
+          </div>
+        </div>
+      </aside>
+      <button class="sidebar-scrim" id="sidebar-scrim" type="button" aria-label="Fechar navegação" tabindex="-1"></button>
+
+      <main class="app-main">
+        <header class="topbar">
+          <div class="topbar-leading">
+            <button class="icon-button menu-toggle" id="open-sidebar" type="button" aria-label="Abrir navegação" aria-expanded="false" aria-controls="sidebar">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            <div class="breadcrumbs"><span>Clube Olympico</span><span class="breadcrumb-sep" aria-hidden="true">/</span><strong id="page-title">Visão geral</strong></div>
+          </div>
+          <div class="topbar-actions">
+            <span class="topbar-demo"><span>Conta demonstrativa</span><kbd>Dados fictícios</kbd></span>
+            <button class="icon-button help-button" id="show-demo-info" type="button" aria-label="Informações da demonstração">i</button>
+            <button class="topbar-user" id="topbar-user" type="button" aria-label="Conta de demonstração, sair">
+              <span class="user-monogram user-monogram--top" aria-hidden="true">AC</span>
+              <span class="topbar-user__name">Administração</span>
+              <span class="user-caret" aria-hidden="true">⌄</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="page-content" id="page-content">
+          <section class="view is-visible" id="view-dashboard" data-view-panel="dashboard" aria-labelledby="dashboard-heading">
+            <div class="page-heading page-heading--dashboard">
+              <div><p class="eyebrow" id="today-label">Sexta-feira, 27 de novembro</p><h1 id="dashboard-heading">O clube, em um só lugar.</h1><p class="page-lede">Acompanhe cadastros, ocupação dos espaços e o que precisa de atenção.</p></div>
+              <div class="heading-actions"><button class="button button--quiet" type="button" data-goto="processes" data-process-kind="registration">Ver processos</button><button class="button button--primary" type="button" data-action="new-reservation">+ Nova reserva</button></div>
+            </div>
+            <div class="dashboard-grid">
+              <section class="panel panel--welcome" aria-labelledby="welcome-heading">
+                <div class="welcome-copy"><p class="panel-kicker">Resumo da operação</p><h2 id="welcome-heading">Bom dia, equipe.</h2><p>Os próximos passos do clube estão organizados por responsável.</p><button class="text-button" type="button" data-goto="processes" data-process-kind="registration">Acompanhar os processos <span aria-hidden="true">→</span></button></div>
+                <div class="welcome-art" aria-hidden="true"><div class="welcome-orbit welcome-orbit--outer"></div><div class="welcome-orbit welcome-orbit--inner"></div><div class="welcome-court"><span></span><span></span><i></i><b></b></div><div class="welcome-caption">Clube Olympico</div></div>
+              </section>
+
+              <section class="panel panel--metrics" aria-label="Resumo dos registros">
+                <div class="metric"><span class="metric-label">Atletas na base</span><strong id="metric-athletes">0</strong><span class="metric-foot">em todas as modalidades</span></div>
+                <div class="metric"><span class="metric-label">Cadastros em análise</span><strong id="metric-pending">0</strong><span class="metric-foot" id="metric-pending-foot">aguardando a secretaria</span></div>
+                <div class="metric"><span class="metric-label">Reservas de hoje</span><strong id="metric-bookings">0</strong><span class="metric-foot">em todos os espaços</span></div>
+              </section>
+
+              <section class="panel panel--agenda" aria-labelledby="today-agenda-heading">
+                <div class="panel-heading"><div><h2 id="today-agenda-heading">Agenda de hoje</h2><p>Ocupação por espaço esportivo</p></div><button class="icon-button icon-button--small" type="button" data-goto="agenda" aria-label="Abrir agenda">↗</button></div>
+                <div class="agenda-preview" id="agenda-preview"></div>
+                <button class="panel-link" type="button" data-goto="agenda">Ver agenda completa <span aria-hidden="true">→</span></button>
+              </section>
+
+              <section class="panel panel--queue" aria-labelledby="queue-heading">
+                <div class="panel-heading"><div><h2 id="queue-heading">Cadastros para revisar</h2><p>Etapas pendentes da secretaria</p></div><span class="count-pill" id="queue-count">0</span></div>
+                <div class="queue-list" id="queue-list"></div>
+                <button class="panel-link" type="button" data-goto="people">Abrir cadastros <span aria-hidden="true">→</span></button>
+              </section>
+
+              <section class="panel panel--process" aria-labelledby="process-highlight-heading">
+                <div class="panel-heading"><div><h2 id="process-highlight-heading">Próximo passo</h2><p>Reserva de espaço</p></div><span class="state-pill state-pill--active">Em andamento</span></div>
+                <div class="next-step-body"><span class="next-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v15H4zM8 3v4M16 3v4M4 9h16M8 13h3M8 16h5"></path></svg></span><div><strong id="next-step-title">Conferir disponibilidade</strong><span id="next-step-detail">Selecione um espaço e um horário para consultar a agenda.</span></div></div>
+                <button class="button button--outline" type="button" data-goto="processes" data-process-kind="reservation">Ver fluxo de reserva</button>
+              </section>
+            </div>
+            <p class="page-disclaimer">Ambiente demonstrativo. Os dados são fictícios e as alterações ficam neste navegador.</p>
+          </section>
+
+          <section class="view" id="view-people" data-view-panel="people" aria-labelledby="people-heading" hidden>
+            <div class="page-heading"><div><p class="eyebrow">Pessoas e equipes</p><h1 id="people-heading">Cadastro de atletas</h1><p class="page-lede">Uma ficha por atleta, com equipe e situação visíveis para todos os setores.</p></div><div class="heading-actions"><button class="button button--quiet" type="button" data-goto="processes" data-process-kind="registration">Ver fluxo de cadastro</button><button class="button button--primary" type="button" data-action="new-athlete">+ Novo cadastro</button></div></div>
+            <section class="panel people-panel" aria-labelledby="people-table-heading">
+              <div class="table-toolbar"><div><h2 id="people-table-heading">Atletas</h2><p><span id="people-count">0</span> registros de exemplo</p></div><div class="table-filters"><label class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg><span class="visually-hidden">Buscar atleta</span><input id="people-search" type="search" placeholder="Buscar nome ou equipe"></label><select id="people-status-filter" aria-label="Filtrar por situação"><option value="all">Todas as situações</option><option value="active">Ativo</option><option value="pending">Em análise</option><option value="documents">Com pendência</option></select></div></div>
+              <div class="table-scroll"><table class="data-table"><thead><tr><th scope="col">Atleta</th><th scope="col">Equipe</th><th scope="col">Modalidade</th><th scope="col">Etapa do cadastro</th><th scope="col">Situação</th><th scope="col"><span class="visually-hidden">Ações</span></th></tr></thead><tbody id="people-table-body"></tbody></table></div>
+              <p class="empty-state" id="people-empty" hidden>Nenhum cadastro corresponde à busca. Ajuste os filtros para ver outros atletas.</p>
+            </section>
+            <section class="panel registration-spotlight" aria-labelledby="registration-spotlight-heading"><div class="spotlight-copy"><p class="panel-kicker">Processo acompanhado</p><h2 id="registration-spotlight-heading">Cada etapa deixa claro o próximo passo.</h2><p>Secretaria, família e equipe veem o que falta e quem precisa agir.</p></div><div class="mini-stage-list" id="registration-mini-flow"></div><button class="button button--outline" type="button" data-goto="processes" data-process-kind="registration">Abrir processo de cadastro</button></section>
+          </section>
+
+          <section class="view" id="view-agenda" data-view-panel="agenda" aria-labelledby="agenda-heading" hidden>
+            <div class="page-heading"><div><p class="eyebrow">Instalações e horários</p><h1 id="agenda-heading">Agenda de espaços</h1><p class="page-lede">Veja a ocupação antes de confirmar um treino ou uma atividade.</p></div><div class="heading-actions"><button class="button button--quiet" type="button" data-goto="processes" data-process-kind="reservation">Como funciona</button><button class="button button--primary" type="button" data-action="new-reservation">+ Nova reserva</button></div></div>
+            <section class="panel agenda-panel" aria-labelledby="schedule-heading">
+              <div class="agenda-toolbar"><div class="agenda-toolbar__title"><h2 id="schedule-heading">Agenda por espaço</h2><p id="selected-date-label"></p></div><div class="agenda-toolbar__controls"><button class="icon-button" id="previous-day" type="button" aria-label="Dia anterior">‹</button><label class="date-control"><span class="visually-hidden">Data da agenda</span><input id="agenda-date" type="date"></label><button class="icon-button" id="next-day" type="button" aria-label="Próximo dia">›</button><button class="button button--quiet button--today" id="agenda-today" type="button">Hoje</button></div></div>
+              <div class="agenda-legend"><span><i class="legend-mark legend-mark--futsal"></i>Futsal</span><span><i class="legend-mark legend-mark--volley"></i>Vôlei</span><span><i class="legend-mark legend-mark--basket"></i>Basquete</span><span><i class="legend-mark legend-mark--open"></i>Horário livre</span></div>
+              <div class="schedule-scroll"><div class="schedule-grid" id="schedule-grid"></div></div>
+              <p class="schedule-note">Horários ocupados não aceitam reservas sobrepostas. Clique em um horário livre para começar.</p>
+            </section>
+            <section class="panel reservation-spotlight" aria-labelledby="reservation-spotlight-heading"><div class="spotlight-copy"><p class="panel-kicker">Marcação acompanhada</p><h2 id="reservation-spotlight-heading">Da solicitação à confirmação.</h2><p>Se houver conflito, escolha outro horário ou espaço antes de salvar.</p></div><div class="reservation-flow-mini" id="reservation-mini-flow"></div><button class="button button--outline" type="button" data-goto="processes" data-process-kind="reservation">Ver processo de reserva</button></section>
+          </section>
+
+          <section class="view" id="view-processes" data-view-panel="processes" aria-labelledby="processes-heading" hidden>
+            <div class="page-heading page-heading--processes"><div><p class="eyebrow">Processos do clube</p><h1 id="processes-heading">O trabalho visível, etapa por etapa.</h1><p class="page-lede">Acompanhe responsabilidades, pendências e decisões sem perder o histórico.</p></div><div class="heading-actions"><span class="process-demo-chip"><span class="process-demo-dot"></span>Processos de exemplo</span></div></div>
+            <div class="process-tabs" role="tablist" aria-label="Tipo de processo">
+              <button class="process-tab is-selected" id="tab-registration" type="button" role="tab" aria-selected="true" aria-controls="process-panel" data-process-kind="registration">Cadastro de atleta<span id="registration-tab-count">0</span></button>
+              <button class="process-tab" id="tab-reservation" type="button" role="tab" aria-selected="false" aria-controls="process-panel" data-process-kind="reservation" tabindex="-1">Reserva de espaço<span id="reservation-tab-count">0</span></button>
+            </div>
+            <section class="process-panel" id="process-panel" role="tabpanel" aria-labelledby="tab-registration">
+              <div class="process-overview panel"><div><span class="process-type-mark" id="process-type-mark" aria-hidden="true">P</span></div><div class="process-overview__copy"><p class="panel-kicker" id="process-template-label">Entrada de atleta</p><h2 id="process-instance-title">Cadastro em andamento</h2><p id="process-instance-description">Veja o que já foi feito, quem responde pela etapa atual e qual é a próxima ação.</p></div><div class="process-progress"><strong id="process-progress-value">0%</strong><span>do processo concluído</span><div class="progress-track"><span id="process-progress-bar"></span></div></div></div>
+              <div class="process-workspace">
+                <section class="panel process-map-panel" aria-labelledby="process-map-heading"><div class="panel-heading"><div><h2 id="process-map-heading">Mapa do processo</h2><p>Selecione uma etapa para ver detalhes e responsáveis.</p></div><div class="map-tools"><button class="icon-button icon-button--small" type="button" id="map-zoom-out" aria-label="Diminuir mapa">−</button><button class="icon-button icon-button--small" type="button" id="map-zoom-in" aria-label="Aumentar mapa">+</button><button class="icon-button icon-button--small" type="button" id="map-fit" aria-label="Enquadrar mapa">⤢</button></div></div><div class="flow-canvas" id="flow-canvas" tabindex="0" aria-label="Diagrama visual do processo"></div><div class="map-legend"><span><i class="legend-node legend-node--complete"></i>Concluído</span><span><i class="legend-node legend-node--current"></i>Etapa atual</span><span><i class="legend-node legend-node--waiting"></i>Aguardando</span><span><i class="legend-node legend-node--exception"></i>Exceção</span></div></section>
+                <aside class="panel step-inspector" id="step-inspector" aria-live="polite" aria-labelledby="step-inspector-heading"><div class="inspector-top"><span class="inspector-state" id="inspector-state">Etapa atual</span><button class="icon-button icon-button--small" id="inspector-close" type="button" aria-label="Recolher detalhes da etapa" aria-expanded="true">−</button></div><h2 id="step-inspector-heading">Conferência da secretaria</h2><p id="inspector-description">Confira os dados iniciais e registre o que precisa de complemento.</p><dl class="step-metadata"><div><dt>Responsável</dt><dd id="inspector-owner">Secretaria</dd></div><div><dt>Prazo sugerido</dt><dd id="inspector-due">2 dias úteis</dd></div><div><dt>Próxima ação</dt><dd id="inspector-next">Conferir os dados do responsável</dd></div></dl><div class="inspector-checklist" id="inspector-checklist"></div><button class="button button--primary inspector-action" id="advance-process" type="button">Concluir etapa demonstrativa</button><p class="inspector-help" id="inspector-help">Ação apenas demonstrativa. Nenhuma informação é enviada.</p></aside>
+              </div>
+              <details class="panel process-list-panel" id="process-list-details"><summary><span>Ver todas as etapas em lista</span><span class="summary-count" id="process-list-count"></span></summary><div id="process-list"></div></details>
+              <div class="process-activity panel"><div class="panel-heading"><div><h2>Atividade recente</h2><p>Histórico de exemplo deste processo</p></div><span class="activity-mark" aria-hidden="true">↻</span></div><ol class="activity-list" id="process-activity-list"></ol></div>
+            </section>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <dialog class="dialog" id="reservation-dialog" aria-labelledby="reservation-dialog-title">
+      <form id="reservation-form" method="dialog" novalidate>
+        <div class="dialog-header"><div><p class="panel-kicker">Novo horário</p><h2 id="reservation-dialog-title">Reservar espaço esportivo</h2></div><button class="icon-button" type="button" data-close-dialog="reservation-dialog" aria-label="Fechar">×</button></div>
+        <p class="dialog-lede">A agenda será conferida antes da confirmação.</p>
+        <div class="form-grid"><div class="field form-grid__wide"><label for="reservation-title">Atividade</label><input class="text-input" id="reservation-title" name="title" maxlength="100" placeholder="Ex.: Treino Sub-15 de futsal" required aria-required="true"></div><div class="field"><label for="reservation-sport">Modalidade</label><select class="text-input" id="reservation-sport" name="sport"><option>Futsal</option><option>Vôlei</option><option>Basquete</option><option>Atividade geral</option></select></div><div class="field"><label for="reservation-court">Espaço</label><select class="text-input" id="reservation-court" name="courtId" required aria-required="true"></select></div><div class="field"><label for="reservation-date">Data</label><input class="text-input" id="reservation-date" name="date" type="date" required aria-required="true"></div><div class="field field-time"><label for="reservation-start">Horário</label><div class="time-range"><input class="text-input" id="reservation-start" name="startTime" type="time" value="16:00" required aria-label="Horário de início"><span>até</span><input class="text-input" id="reservation-end" name="endTime" type="time" value="17:00" required aria-label="Horário de término"></div></div></div>
+        <p class="dialog-feedback" id="reservation-feedback" role="status" aria-live="polite"></p><div class="dialog-actions"><button class="button button--quiet" type="button" data-close-dialog="reservation-dialog">Cancelar</button><button class="button button--primary" type="submit">Verificar e reservar</button></div>
+      </form>
+    </dialog>
+
+    <dialog class="dialog" id="athlete-dialog" aria-labelledby="athlete-dialog-title">
+      <form id="athlete-form" method="dialog" novalidate>
+        <div class="dialog-header"><div><p class="panel-kicker">Novo registro</p><h2 id="athlete-dialog-title">Pré-cadastrar atleta</h2></div><button class="icon-button" type="button" data-close-dialog="athlete-dialog" aria-label="Fechar">×</button></div>
+        <p class="dialog-lede">O cadastro começa em análise e segue para a secretaria.</p>
+        <div class="form-grid"><div class="field form-grid__wide"><label for="athlete-name">Nome do atleta</label><input class="text-input" id="athlete-name" name="name" maxlength="100" required aria-required="true"></div><div class="field"><label for="athlete-team">Equipe</label><select class="text-input" id="athlete-team" name="team" required aria-required="true"></select></div><div class="field"><label for="athlete-guardian">Responsável</label><input class="text-input" id="athlete-guardian" name="guardian" maxlength="100" required aria-required="true"></div></div>
+        <p class="dialog-feedback" id="athlete-feedback" role="status" aria-live="polite"></p><div class="dialog-actions"><button class="button button--quiet" type="button" data-close-dialog="athlete-dialog">Cancelar</button><button class="button button--primary" type="submit">Enviar para conferência</button></div>
+      </form>
+    </dialog>
+
+    <dialog class="dialog dialog--notice" id="demo-info-dialog" aria-labelledby="demo-info-title">
+      <div class="dialog-header"><div><p class="panel-kicker">Sobre este ambiente</p><h2 id="demo-info-title">Demonstração com dados fictícios</h2></div><button class="icon-button" type="button" data-close-dialog="demo-info-dialog" aria-label="Fechar">×</button></div>
+      <p class="dialog-lede">Cadastros e reservas são exemplos guardados só neste navegador. Use “Restaurar exemplo” para voltar ao estado inicial. Não inclua dados reais.</p>
+      <div class="dialog-actions"><button class="button button--primary" type="button" data-close-dialog="demo-info-dialog">Entendi</button></div>
+    </dialog>
+    <div class="toast-region" id="toast-region" role="status" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
