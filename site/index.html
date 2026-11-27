@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Conheça o Open OSS: crie apps administrativos modulares, conecte processos e escolha onde hospedar seus dados.">
+    <meta property="og:title" content="Open OSS: apps que conversam">
+    <meta property="og:description" content="Crie módulos, conecte dados e publique no servidor da sua equipe.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lucaaregis4r-ops.github.io/open-oss-site/">
+    <title>Open OSS: apps que conversam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;600;700&family=Rethink+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="wordmark" href="#inicio" aria-label="Open OSS, início">
+          OSS<span aria-hidden="true">.</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="visually-hidden">Abrir navegação</span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navegação principal">
+          <a href="#produto">A plataforma</a>
+          <a href="#modulos">Módulos</a>
+          <a href="#pacotes">Pacotes</a>
+          <a class="nav-action" href="#instalar">Instalar</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero container" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 id="hero-title">Monte seus apps. Conecte as etapas.</h1>
+          <p class="hero-lead">Crie módulos, conecte dados e publique no servidor da sua equipe.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#modulos">Explorar os módulos</a>
+            <a class="button button-quiet" href="#instalar">Ver como instalar</a>
+          </div>
+        </div>
+        <figure class="hero-image">
+          <img
+            src="./images/screens/automation-workbench.png"
+            width="2188"
+            height="2104"
+            alt="Captura real do estúdio visual do Open OSS, com um fluxo manual, paleta de nós e painel de configuração."
+            fetchpriority="high">
+          <figcaption>Um fluxo começa com um gatilho e cresce conforme a operação pede.</figcaption>
+        </figure>
+      </section>
+
+      <section class="builder-section container" id="produto" aria-labelledby="builder-title">
+        <div class="builder-copy">
+          <h2 id="builder-title">Campos, conexões e acessos no mesmo lugar.</h2>
+          <p>Comece vazio: adicione módulos, conecte dados e defina acessos.</p>
+          <ul class="capability-list">
+            <li>15 tipos: moeda, anexo, fórmula e código automático, entre outros.</li>
+            <li>Busca, filtros, ordenação, Kanban e calendário conforme os campos.</li>
+            <li>Permissões por papel, visibilidade de registros e histórico de auditoria.</li>
+          </ul>
+        </div>
+        <figure class="builder-image">
+          <img
+            src="./images/screens/builder.png"
+            width="2188"
+            height="2872"
+            alt="Captura real do criador de módulos, mostrando a estrutura de dados, conexões e matriz de permissões."
+            loading="lazy">
+          <figcaption>O criador mostra estrutura, relações e permissões enquanto você configura.</figcaption>
+        </figure>
+      </section>
+
+      <section class="automation-section" aria-labelledby="automation-title">
+        <div class="container automation-inner">
+          <div class="automation-copy">
+            <h2 id="automation-title">Faça os módulos trabalharem juntos.</h2>
+            <p>Crie e teste fluxos com gatilhos, condições, ações e webhooks antes de ativar.</p>
+            <p>Processos por papel separam etapas e responsáveis, sem alterar instâncias em andamento ao publicar versões.</p>
+            <ul class="automation-capabilities" aria-label="Elementos dos fluxos">
+              <li>Gatilhos</li>
+              <li>Condições</li>
+              <li>Ações e webhooks</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="catalog-section container" id="modulos" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <div>
+            <h2 id="catalog-title">Encontre um módulo para começar.</h2>
+          </div>
+          <p>Filtre por área, pesquise e abra um módulo para ver seus campos.</p>
+        </div>
+        <div class="catalog-tools">
+          <label class="search-label" for="catalog-search">Buscar módulos</label>
+          <input id="catalog-search" type="search" placeholder="Ex.: compras, estoque, admissões" autocomplete="off">
+          <div id="category-filters" class="category-filters" aria-label="Filtrar por área"></div>
+        </div>
+        <p id="catalog-status" class="catalog-status" role="status" aria-live="polite">Carregando o catálogo…</p>
+        <div id="catalog-list" class="catalog-list"></div>
+        <button id="catalog-more" class="button button-quiet catalog-more" type="button" hidden>Mostrar mais módulos</button>
+        <noscript>
+          <p class="noscript-note">A busca interativa precisa de JavaScript. O <a href="./data/catalog.json">arquivo completo do catálogo</a> continua disponível.</p>
+        </noscript>
+      </section>
+
+      <section class="packs-section" id="pacotes" aria-labelledby="packs-title">
+        <div class="container">
+          <div class="section-heading packs-heading">
+            <div>
+              <h2 id="packs-title">Comece por um pacote integrado.</h2>
+            </div>
+            <p>Pacotes conectam módulos e podem incluir automações e modelos de processo.</p>
+          </div>
+          <ul id="packs-list" class="packs-list"></ul>
+          <p class="scope-note"><strong>Clube esportivo:</strong> evidências CBC para revisão interna; envio oficial fora da plataforma.</p>
+        </div>
+      </section>
+
+      <section class="assistant-section container" aria-labelledby="assistant-title">
+        <div class="assistant-mark" aria-hidden="true">IA</div>
+        <div>
+          <h2 id="assistant-title">A IA propõe. Sua equipe decide.</h2>
+          <p>A IA sugere módulos e fluxos; revise e confirme antes de publicar.</p>
+          <ol class="assistant-steps">
+            <li>Descreva</li>
+            <li>Revise</li>
+            <li>Confirme</li>
+          </ol>
+        </div>
+        <p class="assistant-note">Use um provedor compatível ou modelo local.</p>
+      </section>
+
+      <section class="install-section" id="instalar" aria-labelledby="install-title">
+        <div class="container install-inner">
+          <div class="install-copy">
+            <h2 id="install-title">Rode localmente ou com Docker.</h2>
+            <p>Node.js 22+ e SQLite nativo; nenhum banco externo é necessário.</p>
+            <p class="access-note">A plataforma requer acesso autorizado; esta vitrine é pública.</p>
+            <a class="button button-primary" href="https://github.com/lucaaregis4r-ops/open-oss" target="_blank" rel="noreferrer">Abrir repositório</a>
+          </div>
+          <div class="install-commands">
+            <div class="command-block">
+              <h3>Instalação local</h3>
+              <pre><code>git clone https://github.com/lucaaregis4r-ops/open-oss.git
+cd open-oss
+npm install
+npm start</code></pre>
+            </div>
+            <div class="command-block">
+              <h3>Com Docker</h3>
+              <pre><code>docker compose up -d</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <a class="wordmark" href="#inicio" aria-label="Open OSS, voltar ao início">OSS<span aria-hidden="true">.</span></a>
+        <p>Plataforma administrativa modular e autogerida.</p>
+        <div class="footer-links">
+          <a href="https://github.com/lucaaregis4r-ops/open-oss" target="_blank" rel="noreferrer">Plataforma</a>
+          <a href="https://github.com/lucaaregis4r-ops/open-oss-site" target="_blank" rel="noreferrer">Código deste site</a>
+        </div>
+      </div>
+    </footer>
+
+    <dialog class="module-dialog" id="module-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-header">
+        <div>
+          <h2 id="dialog-title">Detalhes do módulo</h2>
+        </div>
+        <button class="dialog-close" id="dialog-close" type="button" aria-label="Fechar detalhes">Fechar</button>
+      </div>
+      <div class="dialog-content" id="dialog-content"></div>
+    </dialog>
+  </body>
+</html>
